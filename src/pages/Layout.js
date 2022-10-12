@@ -1,10 +1,12 @@
 import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
 
+import { Navbar } from '../components';
+
 const Layout = () => {
   return (
     <Fragment>
-      <h1>Shared Layout</h1>
+      <Navbar></Navbar>
       <Outlet />
     </Fragment>
   );
