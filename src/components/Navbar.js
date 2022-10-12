@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { AiOutlineMenu } from 'react-icons/ai';
+import { SiBookstack } from 'react-icons/si';
 import { Fragment } from 'react';
 
 const Navbar = () => {
@@ -14,8 +15,9 @@ const Navbar = () => {
     <NavContainer>
       <div className="section">
         <div className="nav-header">
-          <Link to="/">
-            <img src="" alt="Books logo" />
+          <Link to="/" className="logo">
+            <SiBookstack />
+            <h1>Книгополис</h1>
           </Link>
           <button type="button" className="nav-toggle" onClick={openSidebar}>
             <AiOutlineMenu />
@@ -76,8 +78,18 @@ const NavContainer = styled.nav`
     align-items: center;
     justify-content: space-between;
 
-    img {
-      width: 200px;
+    .logo {
+      font-family: 'Lobster', cursive;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary-brown);
+      letter-spacing: 3px;
+      transition: var(--transition);
+
+      svg {
+        font-size: 3rem;
+      }
     }
   }
 
@@ -116,10 +128,10 @@ const NavContainer = styled.nav`
       gap: 16px;
 
       a {
-        font-family: 'Lobster', cursive;
-        color: var(--primary-brown);
-        letter-spacing: 3px;
+        font-size: 1.6rem;
+        letter-spacing: 1px;
         padding: 0.6rem 0;
+        color: var(--primary-brown);
         border-bottom: 3px solid transparent;
         transition: var(--transition);
       }
