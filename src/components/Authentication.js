@@ -30,6 +30,7 @@ const Authentication = () => {
             type={`${showPassword ? 'text' : 'password'}`}
             name="password"
             id="password"
+            placeholder="*********"
             minLength="6"
             maxLength="25"
           />
@@ -55,7 +56,8 @@ const Authentication = () => {
 };
 
 const Wrapper = styled.div`
-  width: 55vw;
+  width: 100%;
+  max-width: 350px;
 
   .form {
     display: flex;
@@ -138,6 +140,7 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 6px;
     padding: 0.8rem 1.2rem;
+    margin-bottom: 2rem;
     color: var(--color-grey-4);
     background-color: var(--color-grey-8);
 
