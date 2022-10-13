@@ -6,6 +6,7 @@
   --primary-green: #2dc653;
   --primary-blue: #4ea8de;
   --primary-brown: #7d4f50;
+  --secondary-brown: #ede0d4;
 
   --primary-background-color: #f8f9fa;
   --secondary-background-color: #e5d4c3;
@@ -91,7 +92,7 @@ h5 {
 }
 
 hr {
-  margin: 2rem 0;
+  margin: 1rem 0;
   border: none;
   border-top: 1px solid var(--color-grey-7);
 }

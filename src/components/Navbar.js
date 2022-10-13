@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { SiBookstack } from 'react-icons/si';
+import Logo from './Logo';
 
 const Navbar = () => {
   const openSidebar = () => {
@@ -12,10 +12,7 @@ const Navbar = () => {
     <NavContainer>
       <div className="section">
         <div className="nav-header">
-          <Link to="/" className="logo">
-            <SiBookstack />
-            <h1>Книгополис</h1>
-          </Link>
+          <Logo></Logo>
           <button type="button" className="nav-toggle" onClick={openSidebar}>
             <AiOutlineMenu />
           </button>
@@ -58,20 +55,6 @@ const NavContainer = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    .logo {
-      font-family: 'Lobster', cursive;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--primary-brown);
-      letter-spacing: 3px;
-      transition: var(--transition);
-
-      svg {
-        font-size: 3rem;
-      }
-    }
   }
 
   .nav-toggle {
