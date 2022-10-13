@@ -23,8 +23,12 @@ const Wrapper = styled.div`
     letter-spacing: 3px;
     transition: var(--transition);
 
+    h1 {
+      font-size: 3.8rem;
+    }
+
     svg {
-      font-size: 3rem;
+      font-size: 3.6rem;
     }
   }
 `;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Authentication } from '../components';
 import image from '../assets/undraw_education.svg';
 
