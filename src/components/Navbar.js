@@ -1,12 +1,9 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { SiBookstack } from 'react-icons/si';
-import { Fragment } from 'react';
 
 const Navbar = () => {
-  const user = true;
-
   const openSidebar = () => {
     console.log('open sidebar');
   };
@@ -24,37 +21,21 @@ const Navbar = () => {
           </button>
         </div>
         <ul className="nav-links">
-          {user && (
-            <Fragment>
-              <li>
-                <Link to="/" className="paper">
-                  Начало
-                </Link>
-              </li>
-              <li>
-                <Link to="/books" className="red">
-                  Книги
-                </Link>
-              </li>
-              <li>
-                <Link to="/lists" className="green">
-                  Списъци
-                </Link>
-              </li>
-              <li>
-                <Link to="/profile" className="paper">
-                  Профил
-                </Link>
-              </li>
-            </Fragment>
-          )}
-          {!user && (
-            <li>
-              <Link to="/login" className="paper">
-                Вход
-              </Link>
-            </li>
-          )}
+          <li>
+            <NavLink to="/books" className="red">
+              Книги
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/lists" className="green">
+              Списъци
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/profile" className="paper">
+              Профил
+            </NavLink>
+          </li>
         </ul>
       </div>
     </NavContainer>
@@ -66,7 +47,7 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--secondary-background-color);
+  background-color: var(--primary-background-color);
   box-shadow: var(--light-shadow);
 
   .section {
@@ -136,22 +117,19 @@ const NavContainer = styled.nav`
         transition: var(--transition);
       }
 
-      .paper {
-        &:hover {
-          border-bottom: 3px solid var(--primary-brown);
-        }
+      .paper:hover,
+      .paper.active {
+        border-bottom: 3px solid var(--primary-brown);
       }
 
-      .red {
-        &:hover {
-          border-bottom: 3px solid var(--primary-red);
-        }
+      .red:hover,
+      .red.active {
+        border-bottom: 3px solid var(--primary-red);
       }
 
-      .green {
-        &:hover {
-          border-bottom: 3px solid var(--primary-green);
-        }
+      .green:hover,
+      .green.active {
+        border-bottom: 3px solid var(--primary-green);
       }
     }
 
