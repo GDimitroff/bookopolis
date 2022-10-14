@@ -5,7 +5,7 @@ import { SiBookstack } from 'react-icons/si';
 const Logo = ({ showIcon = true }) => {
   return (
     <Wrapper>
-      <Link to="/" className="logo">
+      <Link to="/books" className="logo">
         {showIcon && <SiBookstack />}
         <h1>Книгополис</h1>
       </Link>

@@ -1,11 +1,25 @@
 import { Routes, Route } from 'react-router-dom';
-import { Landing, Lists, Books, Book, Layout, Error, Profile } from './pages';
+import {
+  Landing,
+  Lists,
+  Books,
+  Book,
+  Layout,
+  Error,
+  Profile,
+  ProtectedRoute,
+} from './pages';
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
-      <Route element={<Layout />}>
+      <Route
+        element={
+          <ProtectedRoute>
+            <Layout />
+          </ProtectedRoute>
+        }>
         <Route path="books" element={<Books />} />
         <Route path="books/:id" element={<Book />} />
         <Route path="lists" element={<Lists />} />
