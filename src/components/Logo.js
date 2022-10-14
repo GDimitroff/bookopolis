@@ -19,7 +19,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--primary-brown);
+    color: var(--color-brown-1);
     letter-spacing: 3px;
     transition: var(--transition);
 

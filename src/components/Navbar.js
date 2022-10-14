@@ -29,7 +29,7 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/profile" className="paper">
+            <NavLink to="/profile" className="blue">
               Профил
             </NavLink>
           </li>
@@ -44,7 +44,7 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--primary-background-color);
+  background-color: var(--background-color-1);
   box-shadow: var(--light-shadow);
 
   .section {
@@ -60,7 +60,7 @@ const NavContainer = styled.nav`
   .nav-toggle {
     background: transparent;
     border: transparent;
-    color: var(--brown-1);
+    color: var(--color-brown-1);
     cursor: pointer;
 
     svg {
@@ -95,24 +95,29 @@ const NavContainer = styled.nav`
         font-size: 1.6rem;
         letter-spacing: 1px;
         padding: 0.6rem 0;
-        color: var(--brown-1);
+        color: var(--color-brown-1);
         border-bottom: 3px solid transparent;
         transition: var(--transition);
       }
 
       .paper:hover,
       .paper.active {
-        border-bottom: 3px solid var(--primary-brown);
+        border-bottom: 3px solid var(--color-brown-1);
       }
 
       .red:hover,
       .red.active {
-        border-bottom: 3px solid var(--primary-red);
+        border-bottom: 3px solid var(--color-red-1);
       }
 
       .green:hover,
       .green.active {
-        border-bottom: 3px solid var(--primary-green);
+        border-bottom: 3px solid var(--color-green-1);
+      }
+
+      .blue:hover,
+      .blue.active {
+        border-bottom: 3px solid var(--color-blue-1);
       }
     }
 

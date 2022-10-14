@@ -1,29 +1,29 @@
 :root {
   /* general colors */
-  --white: #fff;
-  --black: #222;
-  --red-1: #ff0062;
-  --green-1: #2dc653;
-  --blue-1: #00dbf9;
-  --brown-1: #7d4f50;
-  --brown-2: #ede0d4;
-  --yellow-1: #feb60a;
-  --violet-1: #da00f7;
+  --color-white: #fff;
+  --color-black: #222;
+  --color-red-1: #ff0062;
+  --color-green-1: #2dc653;
+  --color-blue-1: #00dbf9;
+  --color-brown-1: #7d4f50;
+  --color-brown-2: #ede0d4;
+  --color-yellow-1: #feb60a;
+  --color-violet-1: #da00f7;
 
-  --primary-background-color: #f8f9fa;
-  --secondary-background-color: #e5d4c3;
+  --background-color-1: #f8f9fa;
+  --background-color-2: #e5d4c3;
 
   /* grey colors */
-  --grey-1: #0f172a;
-  --grey-2: #1e293b;
-  --grey-3: #334155;
-  --grey-4: #475569;
-  --grey-5: #64748b;
-  --grey-6: #94a3b8;
-  --grey-7: #cbd5e1;
-  --grey-8: #e2e8f0;
-  --grey-9: #f1f5f9;
-  --grey-10: #f8fafc;
+  --color-grey-1: #0f172a;
+  --color-grey-2: #1e293b;
+  --color-grey-3: #334155;
+  --color-grey-4: #475569;
+  --color-grey-5: #64748b;
+  --color-grey-6: #94a3b8;
+  --color-grey-7: #cbd5e1;
+  --color-grey-8: #e2e8f0;
+  --color-grey-9: #f1f5f9;
+  --color-grey-10: #f8fafc;
 
   --transition: all 0.3s linear;
   --spacing: 2px;
@@ -52,8 +52,8 @@ html {
 body {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.6rem;
-  color: var(--brown-1);
-  background: var(--primary-background-color);
+  color: var(--color-brown-1);
+  background: var(--background-color-1);
 }
 
 ul {
@@ -96,14 +96,14 @@ h5 {
 hr {
   margin: 1rem 0;
   border: none;
-  border-top: 1px solid var(--grey-7);
+  border-top: 1px solid var(--color-grey-7);
 }
 
 button {
   font-family: inherit;
   font-size: 1.4rem;
   border: none;
-  color: var(--brown-1);
+  color: var(--color-brown-1);
   background: transparent;
   border-radius: var(--radius);
   transition: var(--transition);

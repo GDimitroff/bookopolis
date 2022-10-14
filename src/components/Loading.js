@@ -30,21 +30,21 @@ const Wrapper = styled.div`
   }
 
   .yellow {
-    background-color: var(--brown-1);
+    background-color: var(--color=brown-1);
   }
 
   .red {
-    background-color: var(--red-1);
+    background-color: var(--color-red-1);
     animation-delay: 0.1s;
   }
 
   .blue {
-    background-color: var(--green-1);
+    background-color: var(--color-green-1);
     animation-delay: 0.2s;
   }
 
   .violet {
-    background-color: var(--blue-1);
+    background-color: var(--color-blue-1);
     animation-delay: 0.3s;
   }
 
