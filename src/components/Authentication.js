@@ -1,17 +1,18 @@
 import styled from 'styled-components';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
+import { toast } from 'react-toastify';
 
 import Logo from './Logo';
 import { FcGoogle } from 'react-icons/fc';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { formatError } from '../utils/constants';
 
 const Authentication = () => {
   const { login, createUser } = useAuthContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const [showPassword, setShowPassword] = useState(false);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -20,8 +21,12 @@ const Authentication = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (emailRef.current.value.trim() === '') return;
-    if (passwordRef.current.value.trim().length < 6) return;
+    if (emailRef.current.value.trim() === '') {
+      return setError(formatError('invalid email'));
+    }
+    if (passwordRef.current.value.trim().length < 6) {
+      return setError(formatError('invalid password'));
+    }
 
     setLoading(true);
     setError(null);
@@ -38,16 +43,33 @@ const Authentication = () => {
           navigate('/books');
         } catch (error) {
           setLoading(false);
-          setError(error);
+          setError(formatError(error.code));
           console.log(error);
         }
       } else {
         setLoading(false);
-        setError(error);
+        setError(formatError(error.code));
         console.log(error);
       }
     }
   };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
+
+      setError(null);
+    }
+  }, [error]);
 
   return (
     <Wrapper>
