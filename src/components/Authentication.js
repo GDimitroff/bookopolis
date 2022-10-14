@@ -5,45 +5,49 @@ import { useAuthContext } from '../context/AuthContext';
 
 import Logo from './Logo';
 import { FcGoogle } from 'react-icons/fc';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 const Authentication = () => {
-  const { loading, login, createUser } = useAuthContext();
+  const { login, createUser } = useAuthContext();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const [showPassword, setShowPassword] = useState(false);
-  const emailInputRef = useRef(null);
-  const passwordInputRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (emailInputRef.current.value.trim() === '') return;
-    if (passwordInputRef.current.value.trim().length < 6) return;
+    if (emailRef.current.value.trim() === '') return;
+    if (passwordRef.current.value.trim().length < 6) return;
+
+    setLoading(true);
+    setError(null);
 
     try {
-      await login(emailInputRef.current.value, passwordInputRef.current.value);
+      await login(emailRef.current.value, passwordRef.current.value);
+      setLoading(false);
       navigate('/books');
     } catch (error) {
       if (error.code === 'auth/user-not-found') {
         try {
-          await createUser(
-            emailInputRef.current.value,
-            passwordInputRef.current.value
-          );
+          await createUser(emailRef.current.value, passwordRef.current.value);
+          setLoading(false);
           navigate('/books');
         } catch (error) {
+          setLoading(false);
           setError(error);
           console.log(error);
         }
       } else {
+        setLoading(false);
         setError(error);
         console.log(error);
       }
     }
   };
-
-  if (loading) return <h1>loading...</h1>;
 
   return (
     <Wrapper>
@@ -56,7 +60,7 @@ const Authentication = () => {
             placeholder="ime@email.com"
             name="email"
             id="email"
-            ref={emailInputRef}
+            ref={emailRef}
           />
         </div>
         <div className="form-control">
@@ -68,7 +72,7 @@ const Authentication = () => {
             placeholder="*********"
             minLength="6"
             maxLength="25"
-            ref={passwordInputRef}
+            ref={passwordRef}
           />
           <button
             type="button"
@@ -81,6 +85,7 @@ const Authentication = () => {
         </div>
         <button type="submit" className="btn btn-submit">
           Вход / Регистрация
+          {loading && <AiOutlineLoading3Quarters className="spinner-small" />}
         </button>
         <hr />
         <button type="button" className="btn btn-google">
@@ -145,10 +150,17 @@ const Wrapper = styled.div`
   }
 
   .btn-submit {
+    position: relative;
     color: var(--color-white);
     background-color: var(--primary-green);
     padding: 0.8rem 1.2rem;
     margin-top: 1rem;
+
+    svg {
+      position: absolute;
+      top: 10px;
+      right: 50px;
+    }
   }
 
   hr {
