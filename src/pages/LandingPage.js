@@ -1,9 +1,25 @@
 import styled from 'styled-components';
 
-import { Authentication } from '../components';
+import { useAuthContext } from '../context/AuthContext';
+import { Authentication, Loading } from '../components';
 import image from '../assets/undraw_education.svg';
+import { Navigate } from 'react-router-dom';
 
 const LandingPage = () => {
+  const { loading, user } = useAuthContext();
+
+  if (loading) {
+    return (
+      <Wrapper>
+        <Loading />
+      </Wrapper>
+    );
+  }
+
+  if (user) {
+    return <Navigate to="/books" replace={true} />;
+  }
+
   return (
     <Wrapper className="section">
       <img src={image} alt="Girl and books" />

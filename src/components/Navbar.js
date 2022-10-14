@@ -2,8 +2,11 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineMenu } from 'react-icons/ai';
 import Logo from './Logo';
+import { useAuthContext } from '../context/AuthContext';
 
 const Navbar = () => {
+  const { logout } = useAuthContext();
+
   const openSidebar = () => {
     console.log('open sidebar');
   };
@@ -24,14 +27,22 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/quotes" className="yellow">
+              Цитати
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/lists" className="green">
               Списъци
             </NavLink>
           </li>
           <li>
-            <NavLink to="/profile" className="blue">
+            <NavLink to="/profile" className="paper">
               Профил
             </NavLink>
+          </li>
+          <li>
+            <button onClick={logout}>Logout</button>
           </li>
         </ul>
       </div>
@@ -115,9 +126,9 @@ const NavContainer = styled.nav`
         border-bottom: 3px solid var(--color-green-1);
       }
 
-      .blue:hover,
-      .blue.active {
-        border-bottom: 3px solid var(--color-blue-1);
+      .yellow:hover,
+      .yellow.active {
+        border-bottom: 3px solid var(--color-yellow-1);
       }
     }
 

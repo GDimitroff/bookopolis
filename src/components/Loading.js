@@ -3,10 +3,10 @@ import styled from 'styled-components';
 const Loading = () => {
   return (
     <Wrapper>
-      <div className="yellow"></div>
+      <div className="brown"></div>
       <div className="red"></div>
-      <div className="blue"></div>
-      <div className="violet"></div>
+      <div className="yellow"></div>
+      <div className="green"></div>
     </Wrapper>
   );
 };
@@ -29,8 +29,8 @@ const Wrapper = styled.div`
     animation: bounce 1.5s 0.5s linear infinite;
   }
 
-  .yellow {
-    background-color: var(--color=brown-1);
+  .brown {
+    background-color: var(--color-brown-1);
   }
 
   .red {
@@ -38,14 +38,14 @@ const Wrapper = styled.div`
     animation-delay: 0.1s;
   }
 
-  .blue {
-    background-color: var(--color-green-1);
-    animation-delay: 0.2s;
+  .yellow {
+    background-color: var(--color-yellow-1);
+    animation-delay: 0.3s;
   }
 
-  .violet {
-    background-color: var(--color-blue-1);
-    animation-delay: 0.3s;
+  .green {
+    background-color: var(--color-green-1);
+    animation-delay: 0.2s;
   }
 
   @keyframes bounce {
