@@ -13,7 +13,6 @@ const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(globalReducer, initialState);
 
   const openSidebar = () => {
-    console.log('open sidebar -> before dispatch');
     dispatch({ type: OPEN_SIDEBAR });
   };
 

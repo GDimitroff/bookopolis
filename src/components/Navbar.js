@@ -18,17 +18,17 @@ const Navbar = () => {
         <Logo></Logo>
         <ul className="nav-links">
           <li>
-            <NavLink to="/books" className="red">
+            <NavLink to="books" className="red">
               Книги
             </NavLink>
           </li>
           <li>
-            <NavLink to="/quotes" className="yellow">
+            <NavLink to="quotes" className="yellow">
               Цитати
             </NavLink>
           </li>
           <li>
-            <NavLink to="/lists" className="green">
+            <NavLink to="lists" className="green">
               Списъци
             </NavLink>
           </li>
@@ -76,8 +76,8 @@ const NavContainer = styled.nav`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
     outline: var(--color-grey-8) 2px solid;
     background-color: var(--color-grey-9);
     border-radius: 50%;
@@ -85,7 +85,7 @@ const NavContainer = styled.nav`
     cursor: pointer;
 
     svg {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
     }
 
     &:hover {
@@ -93,7 +93,7 @@ const NavContainer = styled.nav`
     }
   }
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     .section {
       display: grid;
       grid-template-columns: 1fr 2fr 60px;
