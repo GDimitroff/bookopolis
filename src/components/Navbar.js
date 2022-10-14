@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineMenu } from 'react-icons/ai';
+import { FaUserGraduate } from 'react-icons/fa';
+
 import Logo from './Logo';
 import { useAuthContext } from '../context/AuthContext';
 
@@ -14,12 +16,10 @@ const Navbar = () => {
   return (
     <NavContainer>
       <div className="section">
-        <div className="nav-header">
-          <Logo></Logo>
-          <button type="button" className="nav-toggle" onClick={openSidebar}>
-            <AiOutlineMenu />
-          </button>
-        </div>
+        <button type="button" className="nav-toggle" onClick={openSidebar}>
+          <AiOutlineMenu />
+        </button>
+        <Logo></Logo>
         <ul className="nav-links">
           <li>
             <NavLink to="/books" className="red">
@@ -36,15 +36,18 @@ const Navbar = () => {
               Списъци
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/profile" className="paper">
               Профил
             </NavLink>
           </li>
           <li>
             <button onClick={logout}>Logout</button>
-          </li>
+          </li> */}
         </ul>
+        <button type="button" className="user">
+          <FaUserGraduate />
+        </button>
       </div>
     </NavContainer>
   );
@@ -59,13 +62,9 @@ const NavContainer = styled.nav`
   box-shadow: var(--light-shadow);
 
   .section {
-    display: grid;
-  }
-
-  .nav-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
   }
 
   .nav-toggle {
@@ -75,21 +74,41 @@ const NavContainer = styled.nav`
     cursor: pointer;
 
     svg {
-      font-size: 2.6rem;
+      font-size: 3rem;
     }
   }
 
+  .logo svg,
   .nav-links {
     display: none;
   }
 
-  .nav-buttons-wrapper {
-    display: none;
+  .user {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    outline: var(--color-grey-8) 2px solid;
+    background-color: var(--color-grey-9);
+    border-radius: 50%;
+    transition: var(--transition);
+    cursor: pointer;
+
+    svg {
+      font-size: 2.4rem;
+    }
+
+    &:hover {
+      outline: var(--color-grey-7) 2px solid;
+    }
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     .section {
-      grid-template-columns: auto 1fr;
+      display: grid;
+      grid-template-columns: 1fr 2fr 60px;
       align-items: center;
     }
 
@@ -97,43 +116,67 @@ const NavContainer = styled.nav`
       display: none;
     }
 
-    .nav-links {
-      display: flex;
-      justify-content: end;
-      gap: 16px;
-
-      a {
-        font-size: 1.6rem;
-        letter-spacing: 1px;
-        padding: 0.6rem 0;
-        color: var(--color-brown-1);
-        border-bottom: 3px solid transparent;
-        transition: var(--transition);
-      }
-
-      .paper:hover,
-      .paper.active {
-        border-bottom: 3px solid var(--color-brown-1);
-      }
-
-      .red:hover,
-      .red.active {
-        border-bottom: 3px solid var(--color-red-1);
-      }
-
-      .green:hover,
-      .green.active {
-        border-bottom: 3px solid var(--color-green-1);
-      }
-
-      .yellow:hover,
-      .yellow.active {
-        border-bottom: 3px solid var(--color-yellow-1);
-      }
+    .logo svg {
+      display: block;
     }
 
-    .nav-buttons-wrapper {
+    .user {
+      justify-self: end;
+    }
+
+    .nav-links {
+      justify-self: end;
+      height: 100%;
       display: flex;
+      gap: 18px;
+
+      a {
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--color-brown-1);
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 0%;
+          height: 3px;
+          display: block;
+          transition: all 0.3s ease;
+          bottom: 15%;
+        }
+      }
+
+      .paper:hover::after,
+      .paper.active::after {
+        width: 100%;
+        height: 3px;
+        background-color: var(--color-brown-1);
+      }
+
+      .red:hover::after,
+      .red.active::after {
+        width: 100%;
+        height: 3px;
+        background-color: var(--color-red-1);
+      }
+
+      .green:hover::after,
+      .green.active::after {
+        width: 100%;
+        height: 3px;
+        background-color: var(--color-green-1);
+      }
+
+      .yellow:hover::after,
+      .yellow.active::after {
+        width: 100%;
+        height: 3px;
+        background-color: var(--color-yellow-1);
+      }
     }
   }
 `;
