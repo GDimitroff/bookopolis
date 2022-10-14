@@ -10,13 +10,25 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { formatError } from '../utils/constants';
 
 const Authentication = () => {
-  const { login, createUser } = useAuthContext();
+  const { login, createUser, signInWithGoogle } = useAuthContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const navigate = useNavigate();
+
+  const handleSignInWithGoogle = async () => {
+    setError(null);
+
+    try {
+      await signInWithGoogle();
+      navigate('/books');
+    } catch (error) {
+      setError(formatError(error.code));
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,7 +122,10 @@ const Authentication = () => {
           {loading && <AiOutlineLoading3Quarters className="spinner-small" />}
         </button>
         <hr />
-        <button type="button" className="btn btn-google">
+        <button
+          type="button"
+          className="btn btn-google"
+          onClick={handleSignInWithGoogle}>
           <FcGoogle />
           <p>Влез с Google</p>
         </button>

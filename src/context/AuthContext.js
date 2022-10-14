@@ -2,7 +2,9 @@ import React, { useContext } from 'react';
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signInWithPopup,
   signOut,
+  GoogleAuthProvider,
 } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase';
@@ -20,12 +22,18 @@ const AuthProvider = ({ children }) => {
     return await createUserWithEmailAndPassword(auth, email, password);
   };
 
+  const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider);
+  };
+
   const logout = () => {
     signOut(auth);
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, createUser, logout }}>
+    <AuthContext.Provider
+      value={{ user, loading, login, signInWithGoogle, createUser, logout }}>
       {children}
     </AuthContext.Provider>
   );
