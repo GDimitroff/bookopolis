@@ -1,15 +1,49 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthContext';
 
 import Logo from './Logo';
 import { FcGoogle } from 'react-icons/fc';
 
 const Authentication = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const { loading, login, createUser } = useAuthContext();
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (emailInputRef.current.value.trim() === '') return;
+    if (passwordInputRef.current.value.trim().length < 6) return;
+
+    try {
+      await login(emailInputRef.current.value, passwordInputRef.current.value);
+      navigate('/books');
+    } catch (error) {
+      if (error.code === 'auth/user-not-found') {
+        try {
+          await createUser(
+            emailInputRef.current.value,
+            passwordInputRef.current.value
+          );
+          navigate('/books');
+        } catch (error) {
+          setError(error);
+          console.log(error);
+        }
+      } else {
+        setError(error);
+        console.log(error);
+      }
+    }
   };
+
+  if (loading) return <h1>loading...</h1>;
 
   return (
     <Wrapper>
@@ -22,6 +56,7 @@ const Authentication = () => {
             placeholder="ime@email.com"
             name="email"
             id="email"
+            ref={emailInputRef}
           />
         </div>
         <div className="form-control">
@@ -33,8 +68,10 @@ const Authentication = () => {
             placeholder="*********"
             minLength="6"
             maxLength="25"
+            ref={passwordInputRef}
           />
           <button
+            type="button"
             className="toggle-password"
             onClick={() =>
               setShowPassword((prevShowPassword) => !prevShowPassword)
@@ -42,11 +79,11 @@ const Authentication = () => {
             {showPassword ? 'Скрий' : 'Покажи'}
           </button>
         </div>
-        <button className="btn btn-submit" type="submit">
+        <button type="submit" className="btn btn-submit">
           Вход / Регистрация
         </button>
         <hr />
-        <button className="btn btn-google">
+        <button type="button" className="btn btn-google">
           <FcGoogle />
           <p>Влез с Google</p>
         </button>
