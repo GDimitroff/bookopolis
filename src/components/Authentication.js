@@ -152,14 +152,14 @@ const Wrapper = styled.div`
     input {
       font-family: inherit;
       padding: 0.8rem 1.6rem;
-      border: 1px solid var(--color-grey-7);
+      border: 1px solid var(--grey-7);
       outline: 1px solid transparent;
       border-radius: var(--radius);
-      background-color: var(--color-grey-9);
+      background-color: var(--grey-9);
       transition: var(--transition);
 
       &:focus {
-        outline: 1px solid var(--primary-brown);
+        outline: 1px solid var(--brown-1);
       }
     }
 
@@ -173,8 +173,8 @@ const Wrapper = styled.div`
 
   .btn-submit {
     position: relative;
-    color: var(--color-white);
-    background-color: var(--primary-green);
+    color: var(--white);
+    background-color: var(--green-1);
     padding: 0.8rem 1.2rem;
     margin-top: 1rem;
 
@@ -190,8 +190,8 @@ const Wrapper = styled.div`
     padding: 0;
     margin: 2rem 0 0 0;
     border: none;
-    border-top: 1px solid var(--color-grey-7);
-    color: var(--color-grey-6);
+    border-top: 1px solid var(--grey-7);
+    color: var(--grey-6);
     text-align: center;
   }
 
@@ -212,8 +212,8 @@ const Wrapper = styled.div`
     gap: 6px;
     padding: 0.8rem 1.2rem;
     margin-bottom: 2rem;
-    color: var(--color-grey-4);
-    background-color: var(--color-grey-8);
+    color: var(--grey-4);
+    background-color: var(--grey-8);
 
     svg {
       font-size: 2rem;

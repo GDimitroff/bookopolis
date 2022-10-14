@@ -60,7 +60,7 @@ const NavContainer = styled.nav`
   .nav-toggle {
     background: transparent;
     border: transparent;
-    color: var(--primary-brown);
+    color: var(--brown-1);
     cursor: pointer;
 
     svg {
@@ -95,7 +95,7 @@ const NavContainer = styled.nav`
         font-size: 1.6rem;
         letter-spacing: 1px;
         padding: 0.6rem 0;
-        color: var(--primary-brown);
+        color: var(--brown-1);
         border-bottom: 3px solid transparent;
         transition: var(--transition);
       }
