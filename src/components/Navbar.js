@@ -3,15 +3,11 @@ import { NavLink } from 'react-router-dom';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaUserGraduate } from 'react-icons/fa';
 
+import { useGlobalContext } from '../context/GlobalContext';
 import Logo from './Logo';
-import { useAuthContext } from '../context/AuthContext';
 
 const Navbar = () => {
-  const { logout } = useAuthContext();
-
-  const openSidebar = () => {
-    console.log('open sidebar');
-  };
+  const { openSidebar } = useGlobalContext();
 
   return (
     <NavContainer>
@@ -36,14 +32,6 @@ const Navbar = () => {
               Списъци
             </NavLink>
           </li>
-          {/* <li>
-            <NavLink to="/profile" className="paper">
-              Профил
-            </NavLink>
-          </li>
-          <li>
-            <button onClick={logout}>Logout</button>
-          </li> */}
         </ul>
         <button type="button" className="user">
           <FaUserGraduate />

@@ -1,0 +1,4 @@
+export const OPEN_SIDEBAR = 'OPEN_SIDEBAR';
+export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR';
+export const OPEN_USER_MENU = 'OPEN_USER_MENU';
+export const CLOSE_USER_MENU = 'CLOSE_USER_MENU';

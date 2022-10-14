@@ -1,11 +1,14 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import AuthProvider from './context/AuthContext';
+import GlobalProvider from './context/GlobalContext';
 
 const Providers = ({ children }) => {
   return (
     <AuthProvider>
-      <Router>{children}</Router>
+      <GlobalProvider>
+        <Router>{children}</Router>
+      </GlobalProvider>
     </AuthProvider>
   );
 };
