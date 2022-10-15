@@ -1,12 +1,19 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import { useAuthContext } from '../context/AuthContext';
 import { useGlobalContext } from '../context/GlobalContext';
 import { AiOutlineClose } from 'react-icons/ai';
 import Logo from './Logo';
 
 const Sidebar = () => {
+  const { logout } = useAuthContext();
   const { isSidebarOpen, closeSidebar } = useGlobalContext();
+
+  const handleLogout = () => {
+    logout();
+    closeSidebar();
+  };
 
   return (
     <SidebarContainer>
@@ -19,6 +26,11 @@ const Sidebar = () => {
           </button>
         </div>
         <ul className="links">
+          <li className="paper">
+            <Link to="/" onClick={closeSidebar}>
+              Начало
+            </Link>
+          </li>
           <li className="red">
             <Link to="books" onClick={closeSidebar}>
               Книги
@@ -35,6 +47,10 @@ const Sidebar = () => {
             </Link>
           </li>
         </ul>
+        <hr />
+        <button type="button" className="btn-logout" onClick={handleLogout}>
+          Изход
+        </button>
       </aside>
     </SidebarContainer>
   );
@@ -47,7 +63,7 @@ const SidebarContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--background-color-1);
+    background: var(--color-brown-1);
     transition: var(--transition);
     transform: translate(-100%);
     z-index: -1;
@@ -63,7 +79,7 @@ const SidebarContainer = styled.div`
 
   .sidebar-header {
     margin-top: 20vh;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
   }
 
   .close-btn {
@@ -73,7 +89,7 @@ const SidebarContainer = styled.div`
     font-size: 3rem;
     background: transparent;
     border-color: transparent;
-    color: var(--color-brown-1);
+    color: var(--color-brown-2);
     transition: var(--transition);
     cursor: pointer;
   }
@@ -85,6 +101,7 @@ const SidebarContainer = styled.div`
 
   .logo {
     width: 100%;
+    color: var(--color-brown-2);
   }
 
   .links {
@@ -100,36 +117,25 @@ const SidebarContainer = styled.div`
     font-size: 1.6rem;
     text-transform: uppercase;
     padding: 1.5rem;
-    font-weight: 700;
+    color: var(--color-brown-2);
+    background-color: var(--color-brown-1);
     letter-spacing: var(--spacing);
     transition: var(--transition);
-  }
-
-  .red a {
-    color: var(--color-red-1);
 
     &:hover {
-      color: var(--color-brown-2);
-      background-color: var(--color-red-1);
+      color: var(--color-brown-1);
+      background-color: var(--color-brown-2);
     }
   }
 
-  .green a {
-    color: var(--color-green-1);
-
-    &:hover {
-      color: var(--color-brown-2);
-      background-color: var(--color-green-1);
-    }
+  hr {
+    width: 100%;
+    border-color: var(--color-brown-2);
+    margin: 2rem 0 3rem 0;
   }
 
-  .yellow a {
-    color: var(--color-yellow-1);
-
-    &:hover {
-      color: var(--color-brown-2);
-      background-color: var(--color-yellow-1);
-    }
+  .btn-logout {
+    color: var(--color-brown-2);
   }
 
   @media screen and (min-width: 768px) {
