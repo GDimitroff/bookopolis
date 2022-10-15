@@ -125,6 +125,7 @@ const NavContainer = styled.nav`
         }
       }
 
+      .link.books.active,
       .link.books:hover {
         outline: var(--color-red-1) 1px solid;
 
@@ -133,6 +134,7 @@ const NavContainer = styled.nav`
         }
       }
 
+      .link.quotes.active,
       .link.quotes:hover {
         outline: var(--color-green-1) 1px solid;
 
@@ -141,6 +143,7 @@ const NavContainer = styled.nav`
         }
       }
 
+      .link.lists.active,
       .link.lists:hover {
         outline: var(--color-yellow-1) 1px solid;
 
