@@ -64,10 +64,6 @@ const SidebarContainer = styled.div`
   .sidebar-header {
     margin-top: 20vh;
     margin-bottom: 5rem;
-
-    .logo {
-      pointer-events: none;
-    }
   }
 
   .close-btn {

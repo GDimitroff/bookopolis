@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
+import { useGlobalContext } from '../context/GlobalContext';
 import { SiBookstack } from 'react-icons/si';
 
 const Logo = ({ showIcon = true }) => {
+  const { closeSidebar } = useGlobalContext();
+
   return (
     <Wrapper>
-      <Link to="/books" className="logo">
+      <Link to="/" className="logo" onClick={closeSidebar}>
         {showIcon && <SiBookstack />}
         <h1>Книгополис</h1>
       </Link>

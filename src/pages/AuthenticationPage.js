@@ -5,7 +5,7 @@ import { Authentication, Loading } from '../components';
 import image from '../assets/undraw_education.svg';
 import { Navigate } from 'react-router-dom';
 
-const LandingPage = () => {
+const AuthenticationPage = () => {
   const { loading, user } = useAuthContext();
 
   if (loading) {
@@ -17,7 +17,7 @@ const LandingPage = () => {
   }
 
   if (user) {
-    return <Navigate to="/books" replace={true} />;
+    return <Navigate to="/" replace={true} />;
   }
 
   return (
@@ -47,4 +47,4 @@ const Wrapper = styled.main`
   }
 `;
 
-export default LandingPage;
+export default AuthenticationPage;

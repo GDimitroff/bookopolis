@@ -23,7 +23,7 @@ const Authentication = () => {
 
     try {
       await signInWithGoogle();
-      navigate('/books');
+      navigate('/');
     } catch (error) {
       setError(formatError(error.code));
       console.log(error);
@@ -46,13 +46,13 @@ const Authentication = () => {
     try {
       await login(emailRef.current.value, passwordRef.current.value);
       setLoading(false);
-      navigate('/books');
+      navigate('/');
     } catch (error) {
       if (error.code === 'auth/user-not-found') {
         try {
           await createUser(emailRef.current.value, passwordRef.current.value);
           setLoading(false);
-          navigate('/books');
+          navigate('/');
         } catch (error) {
           setLoading(false);
           setError(formatError(error.code));
