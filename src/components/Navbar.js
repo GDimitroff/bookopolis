@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import { AiOutlineMenu } from 'react-icons/ai';
-import { FaUserGraduate, FaQuoteRight, FaList } from 'react-icons/fa';
-import { ImBook } from 'react-icons/im';
-
+import { useAuthContext } from '../context/AuthContext';
 import { useGlobalContext } from '../context/GlobalContext';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { FaUserMinus, FaQuoteRight, FaList } from 'react-icons/fa';
+import { ImBook } from 'react-icons/im';
 import Logo from './Logo';
 
 const Navbar = () => {
   const { openSidebar } = useGlobalContext();
+  const { logout } = useAuthContext();
 
   return (
     <NavContainer>
@@ -37,8 +38,8 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="profile" className="link">
-              <FaUserGraduate />
+            <NavLink to="auth" className="link" onClick={logout}>
+              <FaUserMinus />
             </NavLink>
           </li>
         </ul>
@@ -103,6 +104,7 @@ const NavContainer = styled.nav`
       gap: 12px;
 
       .link {
+        font-size: 1.6rem;
         width: 40px;
         height: 40px;
         border-radius: 50%;
