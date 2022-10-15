@@ -7,9 +7,6 @@ import {
   GET_BOOKS_LOADING,
   GET_BOOKS_SUCCESS,
   GET_BOOKS_ERROR,
-  GET_BOOK_LOADING,
-  GET_BOOK_SUCCESS,
-  GET_BOOK_ERROR,
 } from '../utils/actions';
 
 const initialState = {
@@ -31,10 +28,7 @@ const BooksProvider = ({ children }) => {
 
     try {
       const data = await getDocs(collection(db, 'books'));
-      const books = [];
-      data.forEach((doc) => {
-        books.push({ id: doc.id, ...doc.data() });
-      });
+      const books = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 
       dispatch({ type: GET_BOOKS_SUCCESS, payload: books });
     } catch (error) {

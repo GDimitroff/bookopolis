@@ -1,14 +1,6 @@
 import styled from 'styled-components';
 
-import { useBooksContext } from '../context/BooksContext';
-
-const BookList = () => {
-  const { booksLoading: loading, books } = useBooksContext();
-
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
-
+const BookList = ({ books }) => {
   return (
     <div>
       {books.map((book) => {
