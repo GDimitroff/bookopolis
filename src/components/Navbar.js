@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+
 import { AiOutlineMenu } from 'react-icons/ai';
-import { FaUserGraduate } from 'react-icons/fa';
+import { FaUserGraduate, FaQuoteRight, FaList } from 'react-icons/fa';
+import { ImBook } from 'react-icons/im';
 
 import { useGlobalContext } from '../context/GlobalContext';
 import Logo from './Logo';
@@ -12,30 +14,34 @@ const Navbar = () => {
   return (
     <NavContainer>
       <div className="section">
-        <button type="button" className="nav-toggle" onClick={openSidebar}>
-          <AiOutlineMenu />
-        </button>
-        <Logo></Logo>
+        <div className="nav-header">
+          <Logo></Logo>
+          <button type="button" className="nav-toggle" onClick={openSidebar}>
+            <AiOutlineMenu />
+          </button>
+        </div>
         <ul className="nav-links">
           <li>
-            <NavLink to="books" className="red">
-              Книги
+            <NavLink to="books" className="link books">
+              <ImBook />
             </NavLink>
           </li>
           <li>
-            <NavLink to="quotes" className="yellow">
-              Цитати
+            <NavLink to="quotes" className="link quotes">
+              <FaQuoteRight />
             </NavLink>
           </li>
           <li>
-            <NavLink to="lists" className="green">
-              Списъци
+            <NavLink to="lists" className="link lists">
+              <FaList />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="profile" className="link">
+              <FaUserGraduate />
             </NavLink>
           </li>
         </ul>
-        <button type="button" className="user">
-          <FaUserGraduate />
-        </button>
       </div>
     </NavContainer>
   );
@@ -50,15 +56,21 @@ const NavContainer = styled.nav`
   box-shadow: var(--light-shadow);
 
   .section {
+    display: grid;
+  }
+
+  .nav-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   .nav-toggle {
+    display: flex;
+    align-items: center;
+    color: var(--color-brown-1);
     background: transparent;
     border: transparent;
-    color: var(--color-brown-1);
     cursor: pointer;
 
     svg {
@@ -71,32 +83,10 @@ const NavContainer = styled.nav`
     display: none;
   }
 
-  .user {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    outline: var(--color-grey-8) 2px solid;
-    background-color: var(--color-grey-9);
-    border-radius: 50%;
-    transition: var(--transition);
-    cursor: pointer;
-
-    svg {
-      font-size: 2.2rem;
-    }
-
-    &:hover {
-      outline: var(--color-grey-7) 2px solid;
-    }
-  }
-
   @media screen and (min-width: 768px) {
     .section {
       display: grid;
-      grid-template-columns: 1fr 2fr 60px;
+      grid-template-columns: 1fr auto;
       align-items: center;
     }
 
@@ -108,62 +98,53 @@ const NavContainer = styled.nav`
       display: block;
     }
 
-    .user {
-      justify-self: end;
-    }
-
     .nav-links {
-      justify-self: end;
-      height: 100%;
       display: flex;
-      gap: 18px;
+      gap: 12px;
 
-      a {
-        height: 100%;
-        position: relative;
-        display: flex;
-        align-items: center;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+      .link {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
         color: var(--color-brown-1);
+        outline: var(--color-brown-2) 1px solid;
+        background-color: var(--color-brown-2);
+        display: grid;
+        place-items: center;
+        transition: var(--transition);
 
-        &::after {
-          content: '';
-          position: absolute;
-          width: 0%;
-          height: 3px;
-          display: block;
-          transition: all 0.3s ease;
-          bottom: 15%;
+        &:hover,
+        &:active {
+          outline: var(--color-brown-1) 1px solid;
+        }
+
+        svg {
+          transition: var(--transition);
         }
       }
 
-      .paper:hover::after,
-      .paper.active::after {
-        width: 100%;
-        height: 3px;
-        background-color: var(--color-brown-1);
+      .link.books:hover {
+        outline: var(--color-red-1) 1px solid;
+
+        svg {
+          color: var(--color-red-1);
+        }
       }
 
-      .red:hover::after,
-      .red.active::after {
-        width: 100%;
-        height: 3px;
-        background-color: var(--color-red-1);
+      .link.quotes:hover {
+        outline: var(--color-green-1) 1px solid;
+
+        svg {
+          color: var(--color-green-1);
+        }
       }
 
-      .green:hover::after,
-      .green.active::after {
-        width: 100%;
-        height: 3px;
-        background-color: var(--color-green-1);
-      }
+      .link.lists:hover {
+        outline: var(--color-yellow-1) 1px solid;
 
-      .yellow:hover::after,
-      .yellow.active::after {
-        width: 100%;
-        height: 3px;
-        background-color: var(--color-yellow-1);
+        svg {
+          color: var(--color-yellow-1);
+        }
       }
     }
   }
