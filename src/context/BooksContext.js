@@ -1,4 +1,6 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
 
 import booksReducer from '../reducers/booksReducer';
 import {
@@ -23,6 +25,26 @@ const BooksContext = React.createContext();
 
 const BooksProvider = ({ children }) => {
   const [state, dispatch] = useReducer(booksReducer, initialState);
+
+  const fetchBooks = async () => {
+    dispatch({ type: GET_BOOKS_LOADING });
+
+    try {
+      const data = await getDocs(collection(db, 'books'));
+      const books = [];
+      data.forEach((doc) => {
+        books.push({ id: doc.id, ...doc.data() });
+      });
+
+      dispatch({ type: GET_BOOKS_SUCCESS, payload: books });
+    } catch (error) {
+      dispatch({ type: GET_BOOKS_ERROR });
+    }
+  };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
 
   return (
     <BooksContext.Provider value={{ ...state }}>
