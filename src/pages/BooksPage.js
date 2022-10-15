@@ -38,7 +38,7 @@ const Wrapper = styled.div`
   margin: 4rem auto;
 
   .options {
-    display: flex;
+    display: grid;
     padding: 1rem;
     color: var(--color-brown-2);
     background-color: var(--color-red-1);
