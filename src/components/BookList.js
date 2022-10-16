@@ -15,10 +15,10 @@ const BookList = ({ books }) => {
 const Wrapper = styled.section`
   display: grid;
   justify-items: center;
-  gap: 1.6rem;
+  gap: 3rem;
 
   @media screen and (min-width: 390px) {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
 `;
 

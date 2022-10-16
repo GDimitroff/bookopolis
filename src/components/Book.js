@@ -23,7 +23,7 @@ const Book = ({ id, title, image, author, grade }) => {
 const Wrapper = styled.section`
   width: 100%;
   position: relative;
-  padding: 2rem;
+  padding: 3rem;
   border-radius: var(--radius);
   display: flex;
   flex-direction: column;
@@ -58,12 +58,18 @@ const Wrapper = styled.section`
   }
 
   .card-footer {
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
     .btn-add {
-      color: var(--color-white);
-      background-color: var(--color-green-1);
-      padding: 0.4rem 0.8rem;
+      width: 100%;
+      font-weight: 700;
+      background-color: var(--color-brown-2);
+      padding: 1rem 2rem;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
     }
   }
 
