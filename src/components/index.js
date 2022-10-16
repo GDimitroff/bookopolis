@@ -5,5 +5,15 @@ import Authentication from './Authentication';
 import Loading from './Loading';
 import Options from './Options';
 import BookList from './BookList';
+import Book from './Book';
 
-export { Navbar, Logo, Authentication, Loading, Sidebar, Options, BookList };
+export {
+  Navbar,
+  Logo,
+  Authentication,
+  Loading,
+  Sidebar,
+  Options,
+  BookList,
+  Book,
+};

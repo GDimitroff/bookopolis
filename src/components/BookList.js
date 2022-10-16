@@ -1,13 +1,25 @@
 import styled from 'styled-components';
 
+import Book from './Book';
+
 const BookList = ({ books }) => {
   return (
-    <div>
+    <Wrapper>
       {books.map((book) => {
-        return <h1 key={book.id}>{book.title}</h1>;
+        return <Book key={book.id} {...book} />;
       })}
-    </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.section`
+  display: grid;
+  justify-items: center;
+  gap: 1.6rem;
+
+  @media screen and (min-width: 390px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+`;
 
 export default BookList;

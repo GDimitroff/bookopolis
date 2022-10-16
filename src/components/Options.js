@@ -19,14 +19,17 @@ const Options = () => {
           <label htmlFor="grades">Клас: </label>
           <select name="grades" id="grades" className="grades-input">
             <option value="all">Всички</option>
-            <option value="five">5 клас</option>
-            <option value="six">6 клас</option>
-            <option value="seven">7 клас</option>
-            <option value="eight">8 клас</option>
-            <option value="nine">9 клас</option>
-            <option value="ten">10 клас</option>
-            <option value="eleven">11 клас</option>
-            <option value="twelve">12 клас</option>
+            <option value="grade-two">2 клас</option>
+            <option value="grade-three">3 клас</option>
+            <option value="grade-four">4 клас</option>
+            <option value="grade-five">5 клас</option>
+            <option value="grade-six">6 клас</option>
+            <option value="grade-seven">7 клас</option>
+            <option value="grade-eight">8 клас</option>
+            <option value="grade-nine">9 клас</option>
+            <option value="grade-ten">10 клас</option>
+            <option value="grade-eleven">11 клас</option>
+            <option value="grade-twelve">12 клас</option>
           </select>
         </div>
         <div className="sort">
@@ -43,9 +46,9 @@ const Options = () => {
 
 const Wrapper = styled.section`
   background-color: var(--color-brown-2);
-  padding: 2rem;
+  padding: 1rem;
   border-radius: var(--radius);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 
   .btn-container {
     display: flex;

@@ -16,6 +16,7 @@ const BooksPage = () => {
   return (
     <main>
       <Wrapper className="section">
+        <h2 className="title">Kнигите за лятото</h2>
         <Options />
         <BookList books={books} />
       </Wrapper>
@@ -33,6 +34,11 @@ const LoadingWrapper = styled.div`
 const Wrapper = styled.div`
   min-height: calc(100vh - (var(--navbar-height)) - 8rem);
   margin: 4rem auto;
+
+  .title {
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+  }
 `;
 
 export default BooksPage;
