@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BookList, Filters, Loading, Sort } from '../components';
+import { BookList, Options, Loading } from '../components';
 import { useBooksContext } from '../context/BooksContext';
 
 const BooksPage = () => {
@@ -16,10 +16,7 @@ const BooksPage = () => {
   return (
     <main>
       <Wrapper className="section">
-        <div className="options">
-          <Sort />
-          <Filters />
-        </div>
+        <Options />
         <BookList books={books} />
       </Wrapper>
     </main>
@@ -36,14 +33,6 @@ const LoadingWrapper = styled.div`
 const Wrapper = styled.div`
   min-height: calc(100vh - (var(--navbar-height)) - 8rem);
   margin: 4rem auto;
-
-  .options {
-    display: grid;
-    padding: 1rem;
-    color: var(--color-brown-2);
-    background-color: var(--color-red-1);
-    border-radius: var(--radius);
-  }
 `;
 
 export default BooksPage;
