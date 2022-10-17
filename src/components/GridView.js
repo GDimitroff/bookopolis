@@ -14,11 +14,15 @@ const GridView = ({ books }) => {
 
 const Wrapper = styled.section`
   display: grid;
-  justify-items: center;
-  gap: 3rem;
+  row-gap: 3rem;
 
-  @media screen and (min-width: 390px) {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+  }
+
+  @media (min-width: 1090px) {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 `;
 

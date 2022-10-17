@@ -1,15 +1,25 @@
 import styled from 'styled-components';
+
+import { useFiltersContext } from '../context/FiltersContext';
 import { FiGrid } from 'react-icons/fi';
 import { FaList } from 'react-icons/fa';
 
 const Filters = () => {
+  const { gridView, setGridView, setListView } = useFiltersContext();
+
   return (
     <Wrapper>
       <div className="btn-container">
-        <button type="button" className="active">
+        <button
+          type="button"
+          className={`${gridView ? 'active' : ''}`}
+          onClick={setGridView}>
           <FiGrid />
         </button>
-        <button type="button">
+        <button
+          type="button"
+          className={`${!gridView ? 'active' : ''}`}
+          onClick={setListView}>
           <FaList />
         </button>
       </div>

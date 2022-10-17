@@ -1,78 +1,40 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import placeholderCover from '../assets/placeholderCover.svg';
 
-const Book = ({ id, title, image, author, grade }) => {
+const Book = ({ id, title, author, image, grade, type }) => {
   return (
     <Wrapper>
-      <header className="book-header">
-        <div className="left">
-          <img src={image ? image : placeholderCover} alt={title} />
+      <article key={id}>
+        <div className="grade">{grade}</div>
+        <img src={image ? image : placeholderCover} alt={title} />
+        <div>
+          <h3>{title}</h3>
+          <h5>{author}</h5>
+          <hr />
+          <div className="actions">
+            <button type="button">+</button>
+          </div>
         </div>
-        <div className="right">
-          <div className="grade">{grade}</div>
-          <button type="button" className="btn-add">
-            +
-          </button>
-        </div>
-      </header>
-      <div className="book-info">
-        <h3>{title}</h3>
-        <p>{author}</p>
-      </div>
+      </article>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section`
-  width: 100%;
-  position: relative;
-  border-radius: var(--radius);
-  box-shadow: var(--light-shadow);
-  padding: 3rem;
-
-  .grade {
-    width: 36px;
-    height: 36px;
+  article {
+    position: relative;
     display: grid;
-    place-items: center;
-    font-size: 1.8rem;
-    font-weight: 700;
+    padding: 3rem;
+    box-shadow: var(--light-shadow);
     border-radius: var(--radius);
-    color: var(--color-brown-1);
-    background-color: var(--color-brown-2);
-  }
 
-  .book-header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-
-    .left {
-      img {
-        width: 100px;
-        margin-bottom: 2rem;
-      }
+    img {
+      height: 120px;
+      margin-bottom: 2rem;
     }
 
-    .right {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-
-      .btn-add {
-        width: 36px;
-        height: 36px;
-        display: grid;
-        place-items: center;
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--color-white);
-        background-color: var(--color-green-1);
-      }
-    }
-  }
-
-  .book-info {
     h3 {
       font-family: 'Lobster';
       color: var(--color-red-1);
@@ -80,8 +42,55 @@ const Wrapper = styled.section`
       margin-bottom: 0.4rem;
     }
 
+    h5 {
+      margin-bottom: 0.6rem;
+      letter-spacing: 0;
+    }
+
     p {
       font-size: 1.4rem;
+    }
+
+    .grade {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      font-size: 1.8;
+      font-weight: 700;
+      color: var(--color-brown-1);
+      background-color: var(--color-brown-2);
+      border-top-right-radius: var(--radius);
+    }
+
+    .actions {
+      display: flex;
+
+      button {
+        font-size: 1.4rem;
+        padding: 0.4rem 1rem;
+        color: var(--color-brown-2);
+        background-color: var(--color-brown-1);
+
+        &:hover,
+        &:active {
+        }
+      }
+    }
+  }
+
+  @media (min-width: 390px) {
+    article {
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      column-gap: 2rem;
+
+      img {
+        margin-bottom: 0;
+      }
     }
   }
 `;
