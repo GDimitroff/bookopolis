@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BookList, Options, Loading } from '../components';
+import { BookList, Filters, Loading } from '../components';
 import { useBooksContext } from '../context/BooksContext';
 
 const BooksPage = () => {
@@ -17,7 +17,7 @@ const BooksPage = () => {
     <main>
       <Wrapper className="section">
         <h2 className="title">Kнигите за лятото</h2>
-        <Options />
+        <Filters />
         <BookList books={books} />
       </Wrapper>
     </main>

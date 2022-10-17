@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FiGrid } from 'react-icons/fi';
 import { FaList } from 'react-icons/fa';
 
-const Options = () => {
+const Filters = () => {
   return (
     <Wrapper>
       <div className="btn-container">
@@ -133,4 +133,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default Options;
+export default Filters;

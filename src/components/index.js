@@ -3,7 +3,7 @@ import Sidebar from './Sidebar';
 import Logo from './Logo';
 import Authentication from './Authentication';
 import Loading from './Loading';
-import Options from './Options';
+import Filters from './Filters';
 import BookList from './BookList';
 import Book from './Book';
 
@@ -13,7 +13,7 @@ export {
   Authentication,
   Loading,
   Sidebar,
-  Options,
+  Filters,
   BookList,
   Book,
 };
