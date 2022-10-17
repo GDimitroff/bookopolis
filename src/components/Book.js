@@ -14,7 +14,7 @@ const Book = ({ id, title, author, image, grade, type }) => {
           <h5>{author}</h5>
           <hr />
           <div className="actions">
-            <button type="button">+</button>
+            <button type="button">+ Добави</button>
           </div>
         </div>
       </article>
@@ -71,18 +71,17 @@ const Wrapper = styled.section`
 
       button {
         font-size: 1.4rem;
-        padding: 0.4rem 1rem;
-        color: var(--color-brown-2);
-        background-color: var(--color-brown-1);
+        color: var(--color-brown-1);
 
         &:hover,
         &:active {
+          color: var(--color-red-1);
         }
       }
     }
   }
 
-  @media (min-width: 390px) {
+  @media (min-width: 360px) {
     article {
       grid-template-columns: auto 1fr;
       align-items: center;
