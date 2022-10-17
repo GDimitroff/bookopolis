@@ -1,25 +1,29 @@
 import styled from 'styled-components';
 
-import Book from './Book';
+import { useBooksContext } from '../context/BooksContext';
+import { useFiltersContext } from '../context/FiltersContext';
+import GridView from './GridView';
+import ListView from './ListView';
 
-const BookList = ({ books }) => {
-  return (
-    <Wrapper>
-      {books.map((book) => {
-        return <Book key={book.id} {...book} />;
-      })}
-    </Wrapper>
-  );
+const BookList = () => {
+  const { booksLoading: loading, booksError: error } = useBooksContext();
+  const { filteredBooks: books, gridView } = useFiltersContext();
+
+  if (loading) {
+    return <Wrapper>Loading...</Wrapper>;
+  }
+
+  if (error) {
+    return <Wrapper>Error...</Wrapper>;
+  }
+
+  if (gridView === false) {
+    return <ListView books={books} />;
+  }
+
+  return <GridView books={books} />;
 };
 
-const Wrapper = styled.section`
-  display: grid;
-  justify-items: center;
-  gap: 3rem;
-
-  @media screen and (min-width: 390px) {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  }
-`;
+const Wrapper = styled.section``;
 
 export default BookList;
