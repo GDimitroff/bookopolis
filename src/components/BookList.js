@@ -4,17 +4,22 @@ import { useBooksContext } from '../context/BooksContext';
 import { useFiltersContext } from '../context/FiltersContext';
 import GridView from './GridView';
 import ListView from './ListView';
+import Loading from './Loading';
 
 const BookList = () => {
   const { booksLoading: loading, booksError: error } = useBooksContext();
   const { filteredBooks: books, gridView } = useFiltersContext();
 
   if (loading) {
-    return <Wrapper>Loading...</Wrapper>;
+    return (
+      <Wrapper>
+        <Loading />
+      </Wrapper>
+    );
   }
 
   if (error) {
-    return <Wrapper>Error...</Wrapper>;
+    return <h5>Възникна грешка! Моля, опитайте отново.</h5>;
   }
 
   if (gridView === false) {
@@ -24,6 +29,11 @@ const BookList = () => {
   return <GridView books={books} />;
 };
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 export default BookList;

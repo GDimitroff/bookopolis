@@ -15,6 +15,7 @@ const BooksPage = () => {
 };
 
 const Wrapper = styled.div`
+  position: relative;
   min-height: calc(100vh - (var(--navbar-height)) - 8rem);
   margin: 4rem auto;
 
