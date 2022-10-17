@@ -5,17 +5,21 @@ import placeholderCover from '../assets/placeholderCover.svg';
 const Book = ({ id, title, image, author, grade }) => {
   return (
     <Wrapper>
-      <div className="grade">{grade}</div>
-      <div className="card-content">
-        <img src={image ? image : placeholderCover} alt="" />
+      <header className="book-header">
+        <div className="left">
+          <img src={image ? image : placeholderCover} alt={title} />
+        </div>
+        <div className="right">
+          <div className="grade">{grade}</div>
+          <button type="button" className="btn-add">
+            +
+          </button>
+        </div>
+      </header>
+      <div className="book-info">
         <h3>{title}</h3>
         <p>{author}</p>
       </div>
-      <footer className="card-footer">
-        <button type="button" className="btn-add">
-          + Добави
-        </button>
-      </footer>
     </Wrapper>
   );
 };
@@ -23,60 +27,62 @@ const Book = ({ id, title, image, author, grade }) => {
 const Wrapper = styled.section`
   width: 100%;
   position: relative;
-  padding: 3rem;
   border-radius: var(--radius);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   box-shadow: var(--light-shadow);
+  padding: 3rem;
 
   .grade {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     display: grid;
     place-items: center;
     font-size: 1.8rem;
     font-weight: 700;
+    border-radius: var(--radius);
     color: var(--color-brown-1);
     background-color: var(--color-brown-2);
-    border-top-right-radius: var(--radius);
   }
 
-  .card-content {
-    margin-bottom: 2rem;
+  .book-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
 
-    img {
-      width: 100%;
+    .left {
+      img {
+        width: 100px;
+        margin-bottom: 2rem;
+      }
     }
 
+    .right {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      .btn-add {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--color-white);
+        background-color: var(--color-green-1);
+      }
+    }
+  }
+
+  .book-info {
     h3 {
+      font-family: 'Lobster';
+      color: var(--color-red-1);
+      line-height: 1;
       margin-bottom: 0.4rem;
     }
-  }
 
-  .card-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    .btn-add {
-      width: 100%;
-      font-weight: 700;
-      background-color: var(--color-brown-2);
-      padding: 1rem 2rem;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
+    p {
+      font-size: 1.4rem;
     }
-  }
-
-  h3 {
-    font-family: 'Lobster';
-    color: var(--color-red-1);
-    line-height: 1;
   }
 `;
 
