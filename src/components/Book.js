@@ -9,7 +9,7 @@ const Book = ({ id, title, author, image, grade, type }) => {
         <div className="grade">{grade}</div>
         <img src={image ? image : placeholderCover} alt={title} />
         <div>
-          <h3>{title}</h3>
+          <h3>"{title}"</h3>
           <h5>{author}</h5>
           <hr />
           <div className="actions">

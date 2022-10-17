@@ -8,7 +8,7 @@ const ListView = ({ books }) => {
         return (
           <article key={id}>
             <div className="left">
-              <h3>{title}</h3>
+              <h3>"{title}"</h3>
               <h5>{author}</h5>
             </div>
             <div className="right">
@@ -33,11 +33,17 @@ const Wrapper = styled.section`
     border-radius: var(--radius);
     padding: 2rem;
 
-    .left h3 {
-      font-family: 'Lobster';
-      color: var(--color-red-1);
-      line-height: 1;
-      margin-bottom: 0.4rem;
+    .left {
+      h3 {
+        font-family: 'Lobster';
+        color: var(--color-red-1);
+        line-height: 1;
+        margin-bottom: 0.4rem;
+      }
+
+      h5 {
+        letter-spacing: 0;
+      }
     }
 
     .right {
