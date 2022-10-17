@@ -29,6 +29,58 @@ const filtersReducer = (state, action) => {
         gridView: false,
       };
     }
+    case UPDATE_FILTERS: {
+      let { name, value } = action.payload;
+
+      if (name === 'grade') {
+        if (value !== 'all') {
+          value = Number(value);
+        }
+      }
+
+      return {
+        ...state,
+        filters: { ...state.filters, [name]: value },
+      };
+    }
+    case FILTER_BOOKS: {
+      const { allBooks } = state;
+      const { grade } = state.filters;
+
+      let filteredBooks = [...allBooks];
+
+      if (grade !== 'all') {
+        filteredBooks = filteredBooks.filter((p) => {
+          return p.grade === grade;
+        });
+      }
+
+      return { ...state, filteredBooks };
+    }
+    case UPDATE_SORT: {
+      return {
+        ...state,
+        sort: action.payload,
+      };
+    }
+    case SORT_BOOKS: {
+      const { sort, filteredBooks } = state;
+      let sortedBooks = [...filteredBooks];
+
+      if (sort === 'name-a') {
+        sortedBooks = sortedBooks.sort((a, b) =>
+          a.title.localeCompare(b.title)
+        );
+      }
+
+      if (sort === 'name-z') {
+        sortedBooks = sortedBooks.sort((a, b) =>
+          b.title.localeCompare(a.title)
+        );
+      }
+
+      return { ...state, filteredBooks: sortedBooks };
+    }
     default: {
       throw new Error(`No matching action type: "${action.type}"`);
     }

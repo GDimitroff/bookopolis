@@ -6,10 +6,10 @@ import {
   LOAD_BOOKS,
   SET_GRIDVIEW,
   SET_LISTVIEW,
-  UPDATE_SORT,
-  SORT_BOOKS,
   UPDATE_FILTERS,
   FILTER_BOOKS,
+  UPDATE_SORT,
+  SORT_BOOKS,
 } from '../utils/actions';
 
 const initialState = {
@@ -32,6 +32,11 @@ const FiltersProvider = ({ children }) => {
     dispatch({ type: LOAD_BOOKS, payload: books });
   }, [books]);
 
+  useEffect(() => {
+    dispatch({ type: FILTER_BOOKS });
+    dispatch({ type: SORT_BOOKS });
+  }, [books, state.filters, state.sort]);
+
   const setGridView = () => {
     dispatch({ type: SET_GRIDVIEW });
   };
@@ -40,12 +45,24 @@ const FiltersProvider = ({ children }) => {
     dispatch({ type: SET_LISTVIEW });
   };
 
+  const updateFilters = (e) => {
+    const { name, value } = e.target;
+    dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
+  };
+
+  const updateSort = (e) => {
+    const { value } = e.target;
+    dispatch({ type: UPDATE_SORT, payload: value });
+  };
+
   return (
     <FiltersContext.Provider
       value={{
         ...state,
         setGridView,
         setListView,
+        updateFilters,
+        updateSort,
       }}>
       {children}
     </FiltersContext.Provider>

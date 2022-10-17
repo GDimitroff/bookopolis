@@ -5,7 +5,8 @@ import { FiGrid } from 'react-icons/fi';
 import { FaList } from 'react-icons/fa';
 
 const Filters = () => {
-  const { gridView, setGridView, setListView } = useFiltersContext();
+  const { gridView, setGridView, setListView, updateFilters, updateSort } =
+    useFiltersContext();
 
   return (
     <Wrapper>
@@ -26,25 +27,33 @@ const Filters = () => {
       <hr />
       <form>
         <div className="grades">
-          <label htmlFor="grades">Клас: </label>
-          <select name="grades" id="grades" className="grades-input">
+          <label htmlFor="grade">Клас: </label>
+          <select
+            name="grade"
+            id="grade"
+            className="grade-input"
+            onChange={updateFilters}>
             <option value="all">Всички</option>
-            <option value="grade-two">2 клас</option>
-            <option value="grade-three">3 клас</option>
-            <option value="grade-four">4 клас</option>
-            <option value="grade-five">5 клас</option>
-            <option value="grade-six">6 клас</option>
-            <option value="grade-seven">7 клас</option>
-            <option value="grade-eight">8 клас</option>
-            <option value="grade-nine">9 клас</option>
-            <option value="grade-ten">10 клас</option>
-            <option value="grade-eleven">11 клас</option>
-            <option value="grade-twelve">12 клас</option>
+            <option value="2">2 клас</option>
+            <option value="3">3 клас</option>
+            <option value="4">4 клас</option>
+            <option value="5">5 клас</option>
+            <option value="6">6 клас</option>
+            <option value="7">7 клас</option>
+            <option value="8">8 клас</option>
+            <option value="9">9 клас</option>
+            <option value="10">10 клас</option>
+            <option value="11">11 клас</option>
+            <option value="12">12 клас</option>
           </select>
         </div>
         <div className="sort">
           <label htmlFor="sort">Подреди по: </label>
-          <select name="sort" id="sort" className="sort-input">
+          <select
+            name="sort"
+            id="sort"
+            className="sort-input"
+            onChange={updateSort}>
             <option value="name-a">Азбучен ред (А-Я)</option>
             <option value="name-z">Обратен ред (Я-А)</option>
           </select>
@@ -99,7 +108,7 @@ const Wrapper = styled.section`
     gap: 12px;
   }
 
-  .grades,
+  .grade,
   .sort {
     display: flex;
     flex-direction: column;
@@ -107,7 +116,7 @@ const Wrapper = styled.section`
   }
 
   .sort-input,
-  .grades-input {
+  .grade-input {
     font-family: inherit;
     border-color: transparent;
     padding: 0.4rem;
@@ -128,7 +137,7 @@ const Wrapper = styled.section`
       align-items: center;
       margin-left: 1rem;
 
-      .grades,
+      .grade,
       .sort {
         flex-direction: row;
         align-items: center;
