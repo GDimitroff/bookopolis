@@ -26,13 +26,15 @@ const Wrapper = styled.section`
   article {
     position: relative;
     display: grid;
-    padding: 3rem;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
     box-shadow: var(--light-shadow);
     border-radius: var(--radius);
 
     img {
       height: 120px;
-      margin-bottom: 2rem;
     }
 
     h3 {
@@ -77,18 +79,6 @@ const Wrapper = styled.section`
         &:active {
           color: var(--color-red-1);
         }
-      }
-    }
-  }
-
-  @media (min-width: 360px) {
-    article {
-      grid-template-columns: auto 1fr;
-      align-items: center;
-      column-gap: 2rem;
-
-      img {
-        margin-bottom: 0;
       }
     }
   }
