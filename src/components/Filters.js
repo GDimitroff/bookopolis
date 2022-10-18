@@ -67,7 +67,7 @@ const Wrapper = styled.section`
   background-color: var(--color-brown-2);
   padding: 1rem;
   border-radius: var(--radius);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 
   .btn-container {
     display: flex;
@@ -105,7 +105,7 @@ const Wrapper = styled.section`
   form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 6px;
   }
 
   .grade,
@@ -127,6 +127,7 @@ const Wrapper = styled.section`
     display: grid;
     grid-template-columns: 70px 1fr auto;
     align-items: center;
+    margin-bottom: 3rem;
 
     .btn-container {
       margin-bottom: 0;
@@ -136,6 +137,7 @@ const Wrapper = styled.section`
       flex-direction: row;
       align-items: center;
       margin-left: 1rem;
+      gap: 10px;
 
       .grade,
       .sort {

@@ -47,6 +47,7 @@ const Wrapper = styled.section`
       color: var(--color-red-1);
       line-height: 1;
       margin-bottom: 0.4rem;
+      font-size: 1.8rem;
     }
 
     .note {
@@ -106,6 +107,10 @@ const Wrapper = styled.section`
   @media screen and (min-width: 480px) {
     article {
       gap: 2rem;
+
+      h3 {
+        font-size: 2rem;
+      }
     }
   }
 `;
