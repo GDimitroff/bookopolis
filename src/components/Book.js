@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import placeholderCover from '../assets/placeholderCover.svg';
 
-const Book = ({ id, title, author, image, grade, type }) => {
+const Book = ({ id, title, author, image, grade, type, note }) => {
   return (
     <Wrapper>
       <article key={id}>
@@ -10,9 +10,11 @@ const Book = ({ id, title, author, image, grade, type }) => {
         <img src={image ? image : placeholderCover} alt={title} />
         <div>
           <h3>"{title}"</h3>
+          {note && <p className="note">{note}</p>}
           <h5>{author}</h5>
           <hr />
           <div className="actions">
+            {type && <p className="type">{type}</p>}
             <button type="button">+ Добави</button>
           </div>
         </div>
@@ -22,6 +24,10 @@ const Book = ({ id, title, author, image, grade, type }) => {
 };
 
 const Wrapper = styled.section`
+  img {
+    display: none;
+  }
+
   article {
     position: relative;
     display: grid;
@@ -40,6 +46,11 @@ const Wrapper = styled.section`
       font-family: 'Lobster';
       color: var(--color-red-1);
       line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .note {
+      font-size: 1.2rem;
       margin-bottom: 0.4rem;
     }
 
@@ -79,6 +90,22 @@ const Wrapper = styled.section`
           color: var(--color-red-1);
         }
       }
+    }
+  }
+
+  @media screen and (min-width: 360px) {
+    img {
+      display: block;
+    }
+
+    article {
+      gap: 1rem;
+    }
+  }
+
+  @media screen and (min-width: 480px) {
+    article {
+      gap: 2rem;
     }
   }
 `;
