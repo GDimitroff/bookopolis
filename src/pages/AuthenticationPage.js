@@ -6,9 +6,9 @@ import image from '../assets/undraw_education.svg';
 import { Navigate } from 'react-router-dom';
 
 const AuthenticationPage = () => {
-  const { loading, user } = useAuthContext();
+  const { userLoading, user } = useAuthContext();
 
-  if (loading) {
+  if (userLoading) {
     return (
       <Wrapper>
         <Loading />

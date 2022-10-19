@@ -1,26 +1,22 @@
-import {
-  GET_USER_LOADING,
-  GET_USER_SUCCESS,
-  GET_USER_ERROR,
-} from '../utils/actions';
+import { USER_LOADING, USER_SIGN_IN, USER_SIGN_OUT } from '../utils/actions';
 
 const autReducer = (state, action) => {
   switch (action.type) {
-    case GET_USER_LOADING: {
+    case USER_LOADING: {
       return {
         ...state,
         userLoading: true,
       };
     }
-    case GET_USER_SUCCESS: {
+    case USER_SIGN_IN: {
       return {
         ...state,
         userLoading: false,
         user: action.payload,
       };
     }
-    case GET_USER_ERROR: {
-      return { ...state, userLoading: false, userError: true };
+    case USER_SIGN_OUT: {
+      return { ...state, userLoading: false, user: null };
     }
     default: {
       throw new Error(`No matching action type: "${action.type}"`);

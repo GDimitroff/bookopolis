@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useReducer } from 'react';
+import { collection, getDocs, setDoc, doc } from 'firebase/firestore';
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -7,12 +8,12 @@ import {
   signOut,
   GoogleAuthProvider,
 } from 'firebase/auth';
-import { auth } from '../firebase';
+import { db, auth } from '../firebase';
+import { USER_LOADING, USER_SIGN_IN, USER_SIGN_OUT } from '../utils/actions';
 import autReducer from '../reducers/authReducer';
 
 const initialState = {
   userLoading: true,
-  userError: false,
   user: null,
 };
 
@@ -40,40 +41,46 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log(user);
+      dispatch({ type: USER_LOADING });
+
+      if (user) {
+        const { uid: id, email } = user;
+
+        const fetchUser = async () => {
+          const data = await getDocs(collection(db, 'users'));
+          const users = data.docs.map((doc) => ({ ...doc.data() }));
+          const existingUser = users.find((user) => user.userId === id);
+
+          if (existingUser)
+            dispatch({
+              type: USER_SIGN_IN,
+              payload: existingUser,
+            });
+          else {
+            const userRef = doc(db, 'users', id);
+            const newUser = {
+              userId: id,
+              email: email,
+              addedBooks: [],
+              favoriteBooks: [],
+            };
+
+            await setDoc(userRef, newUser);
+            dispatch({
+              type: USER_SIGN_IN,
+              payload: newUser,
+            });
+          }
+        };
+
+        fetchUser();
+      } else {
+        dispatch({ type: USER_SIGN_OUT });
+      }
     });
 
     return () => unsubscribe();
   }, []);
-
-  // TODO:
-  // useEffect(() => {
-  //   if (!user) return;
-
-  //   const fetchUser = async () => {
-  //     try {
-  //       const data = await getDocs(collection(db, 'users'));
-  //       const users = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-  //       const existingUser = users.find((user) => user.userId === user.uid);
-
-  //       if (existingUser) {
-  //         setUserInfo(existingUser);
-  //       } else {
-  //         const userRef = doc(db, 'users', user.uid);
-  //         await setDoc(userRef, {
-  //           userId: user.uid,
-  //           email: user.email,
-  //           addedBooks: [],
-  //           favoriteBooks: [],
-  //         });
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   fetchUser();
-  // }, [user]);
 
   return (
     <AuthContext.Provider
