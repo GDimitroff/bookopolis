@@ -5,9 +5,9 @@ import { useAuthContext } from '../context/AuthContext';
 import { Loading } from '../components';
 
 const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useAuthContext();
+  const { user, userLoading } = useAuthContext();
 
-  if (loading) {
+  if (userLoading) {
     return (
       <Wrapper className="section">
         <Loading />
