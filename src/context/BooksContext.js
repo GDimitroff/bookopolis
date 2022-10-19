@@ -13,9 +13,6 @@ const initialState = {
   booksLoading: true,
   booksError: false,
   books: [],
-  bookLoading: true,
-  bookError: false,
-  book: {},
 };
 
 const BooksContext = React.createContext();
