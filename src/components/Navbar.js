@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import { useGlobalContext } from '../context/GlobalContext';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { FaUserMinus, FaQuoteRight, FaList } from 'react-icons/fa';
+import { FaUserMinus, FaList } from 'react-icons/fa';
 import { ImBook } from 'react-icons/im';
 import Logo from './Logo';
 
@@ -23,17 +23,12 @@ const Navbar = () => {
         </div>
         <ul className="nav-links">
           <li>
-            <NavLink to="books" className="link books">
+            <NavLink to="/" className="link" end>
               <ImBook />
             </NavLink>
           </li>
           <li>
-            <NavLink to="quotes" className="link quotes">
-              <FaQuoteRight />
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="lists" className="link lists">
+            <NavLink to="books" className="link">
               <FaList />
             </NavLink>
           </li>
@@ -115,40 +110,25 @@ const NavContainer = styled.nav`
         place-items: center;
         transition: var(--transition);
 
-        &:hover,
-        &:active {
-          outline: var(--color-brown-1) 1px solid;
-        }
-
         svg {
           transition: var(--transition);
         }
+
+        &:hover,
+        &:active {
+          outline: var(--color-red-1) 1px solid;
+
+          svg {
+            color: var(--color-red-1);
+          }
+        }
       }
 
-      .link.books.active,
-      .link.books:hover {
+      .link.active {
         outline: var(--color-red-1) 1px solid;
 
         svg {
           color: var(--color-red-1);
-        }
-      }
-
-      .link.quotes.active,
-      .link.quotes:hover {
-        outline: var(--color-green-1) 1px solid;
-
-        svg {
-          color: var(--color-green-1);
-        }
-      }
-
-      .link.lists.active,
-      .link.lists:hover {
-        outline: var(--color-yellow-1) 1px solid;
-
-        svg {
-          color: var(--color-yellow-1);
         }
       }
     }
