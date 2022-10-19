@@ -9,12 +9,18 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 import { db, auth } from '../firebase';
-import { USER_LOADING, USER_SIGN_IN, USER_SIGN_OUT } from '../utils/actions';
+import {
+  BOOK_LOADING,
+  USER_LOADING,
+  USER_SIGN_IN,
+  USER_SIGN_OUT,
+} from '../utils/actions';
 import autReducer from '../reducers/authReducer';
 
 const initialState = {
   userLoading: true,
   user: null,
+  bookLoading: false,
 };
 
 const AuthContext = React.createContext();
@@ -37,6 +43,10 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     signOut(auth);
+  };
+
+  const bookLoading = () => {
+    dispatch({ type: BOOK_LOADING });
   };
 
   useEffect(() => {
