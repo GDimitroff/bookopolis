@@ -17,7 +17,13 @@ const Book = ({ id, title, author, image, grade, type, note }) => {
           <hr />
           <div className="actions">
             <div className="left">
-              <div className="grade">{grade}</div>
+              {grade.map((g) => {
+                return (
+                  <div className="grade" key={g}>
+                    {g}
+                  </div>
+                );
+              })}
             </div>
             <div className="right">
               <button type="button" className="favorite">
@@ -78,7 +84,11 @@ const Wrapper = styled.section`
       align-items: center;
 
       .left {
+        display: flex;
+        gap: 4px;
+
         .grade {
+          font-size: 1.4rem;
           width: 26px;
           height: 26px;
           display: grid;
@@ -99,6 +109,14 @@ const Wrapper = styled.section`
           display: grid;
           place-items: center;
           font-size: 2.6rem;
+        }
+
+        .icon {
+          color: var(--color-brown-1);
+        }
+
+        .favorite {
+          color: var(--color-red-1);
         }
       }
     }

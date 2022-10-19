@@ -51,7 +51,7 @@ const filtersReducer = (state, action) => {
 
       if (grade !== 'all') {
         filteredBooks = filteredBooks.filter((p) => {
-          return p.grade === grade;
+          return p.grade.includes(grade);
         });
       }
 

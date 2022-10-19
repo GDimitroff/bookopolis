@@ -106,6 +106,10 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     gap: 6px;
+
+    label {
+      font-size: 1.4rem;
+    }
   }
 
   .grade,
