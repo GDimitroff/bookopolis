@@ -6,7 +6,7 @@ const GridView = ({ books }) => {
   return (
     <Wrapper>
       {books.map((book) => {
-        return <Book key={book.id} {...book} />;
+        return <Book key={book.id} book={book} />;
       })}
     </Wrapper>
   );

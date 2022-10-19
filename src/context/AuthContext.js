@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useReducer } from 'react';
-import { collection, getDocs, setDoc, doc } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  setDoc,
+  updateDoc,
+  doc,
+} from 'firebase/firestore';
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -10,6 +16,7 @@ import {
 } from 'firebase/auth';
 import { db, auth } from '../firebase';
 import {
+  ADD_BOOK_SUCCESS,
   BOOK_LOADING,
   USER_LOADING,
   USER_SIGN_IN,
@@ -45,8 +52,18 @@ const AuthProvider = ({ children }) => {
     signOut(auth);
   };
 
-  const bookLoading = () => {
+  const addBook = async (book) => {
     dispatch({ type: BOOK_LOADING });
+
+    try {
+      const userRef = doc(db, 'users', state.user.userId);
+      await updateDoc(userRef, {
+        addedBooks: [...state.user.addedBooks, book],
+      });
+      dispatch({ type: ADD_BOOK_SUCCESS, payload: book });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -100,6 +117,7 @@ const AuthProvider = ({ children }) => {
         signInWithGoogle,
         createUser,
         logout,
+        addBook,
       }}>
       {children}
     </AuthContext.Provider>

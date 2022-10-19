@@ -1,4 +1,6 @@
 import {
+  ADD_BOOK_SUCCESS,
+  ADD_FAVORITE_BOOK_SUCCESS,
   BOOK_LOADING,
   USER_LOADING,
   USER_SIGN_IN,
@@ -27,6 +29,26 @@ const autReducer = (state, action) => {
       return {
         ...state,
         bookLoading: true,
+      };
+    }
+    case ADD_BOOK_SUCCESS: {
+      return {
+        ...state,
+        bookLoading: false,
+        user: {
+          ...state.user,
+          addedBooks: [...state.user.addedBooks, action.payload],
+        },
+      };
+    }
+    case ADD_FAVORITE_BOOK_SUCCESS: {
+      return {
+        ...state,
+        bookLoading: false,
+        user: {
+          ...state.user,
+          favoriteBooks: [...state.user.favoriteBooks, action.payload],
+        },
       };
     }
     default: {

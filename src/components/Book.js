@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { FaPlusSquare, FaMinusSquare } from 'react-icons/fa';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-
-import { useBooksContext } from '../context/BooksContext';
+import { useAuthContext } from '../context/AuthContext';
 import placeholderCover from '../assets/placeholderCover.svg';
 
-const Book = ({ id, title, author, image, grade, type, note }) => {
-  const { addBook, addFavoriteBook } = useBooksContext();
+const Book = ({ book }) => {
+  const { id, title, author, image, grade, type, note } = book;
+  const { addBook } = useAuthContext();
 
   return (
     <Wrapper>
@@ -29,16 +29,13 @@ const Book = ({ id, title, author, image, grade, type, note }) => {
               })}
             </div>
             <div className="right">
-              <button
-                type="button"
-                className="favorite"
-                onClick={addFavoriteBook}>
+              <button type="button" className="favorite">
                 <AiOutlineHeart />
               </button>
               <button
                 type="button"
                 className="icon"
-                onClick={() => addBook(id)}>
+                onClick={() => addBook(book)}>
                 <FaPlusSquare />
               </button>
             </div>

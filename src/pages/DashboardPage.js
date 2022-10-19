@@ -1,11 +1,7 @@
-import { useBooksContext } from '../context/BooksContext';
+import { useAuthContext } from '../context/AuthContext';
 
 const DashboardPage = () => {
-  const {
-    booksLoading: loading,
-    addedBooks,
-    favoriteBooks,
-  } = useBooksContext();
+  const { userLoading: loading, user } = useAuthContext();
 
   if (loading) {
     return <h1>loading...</h1>;
@@ -13,7 +9,7 @@ const DashboardPage = () => {
 
   return (
     <div>
-      {addedBooks.map((b) => {
+      {user.addedBooks.map((b) => {
         const { id, title, author, grade, image } = b;
         return (
           <div key={id}>
@@ -23,7 +19,7 @@ const DashboardPage = () => {
           </div>
         );
       })}
-      <h1>{favoriteBooks}</h1>
+      <h1>{user.favoriteBooks}</h1>
     </div>
   );
 };
