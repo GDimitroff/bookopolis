@@ -67,7 +67,7 @@ const Wrapper = styled.section`
   background-color: var(--color-brown-2);
   padding: 1rem;
   border-radius: var(--radius);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 
   .btn-container {
     display: flex;
@@ -127,7 +127,6 @@ const Wrapper = styled.section`
     display: grid;
     grid-template-columns: 70px 1fr auto;
     align-items: center;
-    margin-bottom: 3rem;
 
     .btn-container {
       margin-bottom: 0;

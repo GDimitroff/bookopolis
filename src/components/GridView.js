@@ -14,11 +14,10 @@ const GridView = ({ books }) => {
 
 const Wrapper = styled.section`
   display: grid;
-  gap: 2rem;
+  gap: 3rem;
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
   }
 
   @media (min-width: 1090px) {

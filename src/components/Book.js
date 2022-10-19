@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { FaPlusSquare, FaMinusSquare } from 'react-icons/fa';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 
 import placeholderCover from '../assets/placeholderCover.svg';
 
@@ -6,7 +8,7 @@ const Book = ({ id, title, author, image, grade, type, note }) => {
   return (
     <Wrapper>
       <article key={id}>
-        <div className="grade">{grade}</div>
+        {type && <p className="type">{type}</p>}
         <img src={image ? image : placeholderCover} alt={title} />
         <div>
           <h3>"{title}"</h3>
@@ -14,8 +16,17 @@ const Book = ({ id, title, author, image, grade, type, note }) => {
           <h5>{author}</h5>
           <hr />
           <div className="actions">
-            {type && <p className="type">{type}</p>}
-            <button type="button">+ Добави</button>
+            <div className="left">
+              <div className="grade">{grade}</div>
+            </div>
+            <div className="right">
+              <button type="button" className="favorite">
+                <AiOutlineHeart />
+              </button>
+              <button type="button" className="icon">
+                <FaPlusSquare />
+              </button>
+            </div>
           </div>
         </div>
       </article>
@@ -24,21 +35,22 @@ const Book = ({ id, title, author, image, grade, type, note }) => {
 };
 
 const Wrapper = styled.section`
-  img {
-    display: none;
+  .type {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.2rem;
   }
 
   article {
     position: relative;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
+
+    padding: 3rem 2rem;
     box-shadow: var(--light-shadow);
     border-radius: var(--radius);
 
     img {
+      display: none;
       height: 120px;
     }
 
@@ -60,47 +72,48 @@ const Wrapper = styled.section`
       letter-spacing: 0;
     }
 
-    p {
-      font-size: 1.4rem;
-    }
-
-    .grade {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 40px;
-      height: 40px;
-      display: grid;
-      place-items: center;
-      font-size: 1.8;
-      font-weight: 700;
-      color: var(--color-brown-1);
-      background-color: var(--color-brown-2);
-      border-top-right-radius: var(--radius);
-    }
-
     .actions {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-      button {
-        font-size: 1.4rem;
-        color: var(--color-brown-1);
+      .left {
+        .grade {
+          width: 26px;
+          height: 26px;
+          display: grid;
+          place-items: center;
+          font-weight: 700;
+          color: var(--color-brown-1);
+          background-color: var(--color-brown-2);
+          border-radius: var(--radius);
+        }
+      }
 
-        &:hover,
-        &:active {
-          color: var(--color-red-1);
+      .right {
+        display: flex;
+        gap: 6px;
+
+        .icon,
+        .favorite {
+          display: grid;
+          place-items: center;
+          font-size: 2.6rem;
         }
       }
     }
   }
 
   @media screen and (min-width: 360px) {
-    img {
-      display: block;
-    }
-
     article {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
       gap: 1rem;
+
+      img {
+        display: block;
+      }
     }
   }
 
