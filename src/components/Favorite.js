@@ -12,7 +12,7 @@ const Favorite = ({
   addFavoriteBook,
   removeFavoriteBook,
 }) => {
-  const { id, title, author } = book;
+  const { title, author } = book;
   const [loading, setLoading] = useState(false);
 
   const handleAddFavoriteBook = async () => {
@@ -30,7 +30,7 @@ const Favorite = ({
 
   const handleRemoveFavoriteBook = async () => {
     setLoading(true);
-    await removeFavoriteBook(id);
+    await removeFavoriteBook(book);
     setLoading(false);
 
     toast.info(

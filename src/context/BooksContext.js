@@ -82,23 +82,32 @@ const BooksProvider = ({ children }) => {
       await updateDoc(userRef, {
         favoriteBooks: [...state.favoriteBooks, book],
       });
-      dispatch({ type: ADD_FAVORITE_BOOK_SUCCESS, payload: book });
+
+      const bookRef = doc(db, 'books', book.id);
+      await updateDoc(bookRef, {
+        favoriteBy: [...book.favoriteBy, id],
+      });
+
+      dispatch({ type: ADD_FAVORITE_BOOK_SUCCESS, payload: { book, id } });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const removeFavoriteBook = async (bookId) => {
+  const removeFavoriteBook = async (book) => {
     try {
       const { id } = user;
       const userRef = doc(db, 'users', id);
-      const newFavoriteBooks = state.favoriteBooks.filter(
-        (b) => b.id !== bookId
-      );
       await updateDoc(userRef, {
-        favoriteBooks: newFavoriteBooks,
+        favoriteBooks: state.favoriteBooks.filter((b) => b.id !== book.id),
       });
-      dispatch({ type: REMOVE_FAVORITE_BOOK_SUCCESS, payload: bookId });
+
+      const bookRef = doc(db, 'books', book.id);
+      await updateDoc(bookRef, {
+        favoriteBy: book.favoriteBy.filter((e) => e !== id),
+      });
+
+      dispatch({ type: REMOVE_FAVORITE_BOOK_SUCCESS, payload: { book, id } });
     } catch (error) {
       console.log(error);
     }
@@ -153,6 +162,7 @@ const BooksProvider = ({ children }) => {
           ...doc.data(),
           id: doc.id,
           addedBy: doc.data().addedBy || [],
+          favoriteBy: doc.data().favoriteBy || [],
         }));
 
         dispatch({ type: GET_BOOKS_SUCCESS, payload: books });

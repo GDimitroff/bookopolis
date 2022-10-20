@@ -72,17 +72,44 @@ const booksReducer = (state, action) => {
       };
     }
     case ADD_FAVORITE_BOOK_SUCCESS: {
+      const { book, id } = action.payload;
+      console.log(book);
+      const newBook = { ...book, favoriteBy: [...book.favoriteBy, id] };
+
+      const newBooks = state.books.map((b) => {
+        if (b.id === book.id) {
+          return { ...b, favoriteBy: [...b.favoriteBy, id] };
+        } else {
+          return b;
+        }
+      });
+
       return {
         ...state,
-        favoriteBooks: [...state.favoriteBooks, action.payload],
+        books: newBooks,
+        favoriteBooks: [...state.favoriteBooks, newBook],
       };
     }
     case REMOVE_FAVORITE_BOOK_SUCCESS: {
+      const { book, id } = action.payload;
+
+      const newBooks = state.books.map((b) => {
+        if (b.id === book.id) {
+          return {
+            ...b,
+            favoriteBy: b.favoriteBy.filter((userId) => userId !== id),
+          };
+        } else {
+          return b;
+        }
+      });
       const newFavoriteBooks = state.favoriteBooks.filter(
-        (b) => b.id !== action.payload
+        (b) => b.id !== book.id
       );
+
       return {
         ...state,
+        books: newBooks,
         favoriteBooks: newFavoriteBooks,
       };
     }
