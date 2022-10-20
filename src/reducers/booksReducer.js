@@ -36,16 +36,39 @@ const booksReducer = (state, action) => {
       return { ...state, addedBooks, favoriteBooks, userLoading: false };
     }
     case ADD_BOOK_SUCCESS: {
+      const { book, id } = action.payload;
+      const newBook = { ...book, addedBy: [...book.addedBy, id] };
+
+      const newBooks = state.books.map((b) => {
+        if (b.id === book.id) {
+          return { ...b, addedBy: [...b.addedBy, id] };
+        } else {
+          return b;
+        }
+      });
+
       return {
         ...state,
-        addedBooks: [...state.addedBooks, action.payload],
+        books: newBooks,
+        addedBooks: [...state.addedBooks, newBook],
       };
     }
     case REMOVE_BOOK_SUCCESS: {
-      const newBooks = state.addedBooks.filter((b) => b.id !== action.payload);
+      const { book, id } = action.payload;
+
+      const newBooks = state.books.map((b) => {
+        if (b.id === book.id) {
+          return { ...b, addedBy: b.addedBy.filter((userId) => userId !== id) };
+        } else {
+          return b;
+        }
+      });
+      const newAddedBooks = state.addedBooks.filter((b) => b.id !== book.id);
+
       return {
         ...state,
-        addedBooks: newBooks,
+        books: newBooks,
+        addedBooks: newAddedBooks,
       };
     }
     case ADD_FAVORITE_BOOK_SUCCESS: {

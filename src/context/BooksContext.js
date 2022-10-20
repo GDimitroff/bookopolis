@@ -44,21 +44,32 @@ const BooksProvider = ({ children }) => {
       await updateDoc(userRef, {
         addedBooks: [...state.addedBooks, book],
       });
-      dispatch({ type: ADD_BOOK_SUCCESS, payload: book });
+
+      const bookRef = doc(db, 'books', book.id);
+      await updateDoc(bookRef, {
+        addedBy: [...book.addedBy, id],
+      });
+
+      dispatch({ type: ADD_BOOK_SUCCESS, payload: { book, id } });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const removeBook = async (bookId) => {
+  const removeBook = async (book) => {
     try {
       const { id } = user;
       const userRef = doc(db, 'users', id);
-      const newBooks = state.addedBooks.filter((b) => b.id !== bookId);
       await updateDoc(userRef, {
-        addedBooks: newBooks,
+        addedBooks: state.addedBooks.filter((b) => b.id !== book.id),
       });
-      dispatch({ type: REMOVE_BOOK_SUCCESS, payload: bookId });
+
+      const bookRef = doc(db, 'books', book.id);
+      await updateDoc(bookRef, {
+        addedBy: book.addedBy.filter((e) => e !== id),
+      });
+
+      dispatch({ type: REMOVE_BOOK_SUCCESS, payload: { book, id } });
     } catch (error) {
       console.log(error);
     }
@@ -138,7 +149,11 @@ const BooksProvider = ({ children }) => {
 
       try {
         const data = await getDocs(collection(db, 'books'));
-        const books = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        const books = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+          addedBy: doc.data().addedBy || [],
+        }));
 
         dispatch({ type: GET_BOOKS_SUCCESS, payload: books });
       } catch (error) {

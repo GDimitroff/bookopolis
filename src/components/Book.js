@@ -14,14 +14,16 @@ const Book = ({ book }) => {
     addedBooks,
     favoriteBooks,
   } = useBooksContext();
-  const { id, title, author, image, grade, type, note } = book;
+  const { id, title, author, image, grade, type, note, addedBy } = book;
   const isBookAdded = addedBooks.find((b) => b.id === id);
   const isFavoriteBook = favoriteBooks.find((b) => b.id === id);
 
   return (
     <Wrapper>
       <article key={id}>
-        {type && <p className="type">{type}</p>}
+        <p className="type">
+          {type} | Прочетена: {addedBy.length}
+        </p>
         <img src={image ? image : placeholderCover} alt={title} />
         <div>
           <h3>"{title}"</h3>

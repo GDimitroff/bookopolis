@@ -4,7 +4,7 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { toast } from 'react-toastify';
 
 const Actions = ({ book, isBookAdded, addBook, removeBook }) => {
-  const { id, title, author } = book;
+  const { title, author } = book;
   const [loading, setLoading] = useState(false);
 
   const handleAddBook = async () => {
@@ -21,7 +21,7 @@ const Actions = ({ book, isBookAdded, addBook, removeBook }) => {
 
   const handleRemoveBook = async () => {
     setLoading(true);
-    await removeBook(id);
+    await removeBook(book);
     setLoading(false);
 
     toast.error(
