@@ -6,8 +6,14 @@ import Favorite from './Favorite';
 import placeholderCover from '../assets/placeholderCover.svg';
 
 const Book = ({ book }) => {
-  const { addBook, removeBook, addFavoriteBook, addedBooks, favoriteBooks } =
-    useBooksContext();
+  const {
+    addBook,
+    removeBook,
+    addFavoriteBook,
+    removeFavoriteBook,
+    addedBooks,
+    favoriteBooks,
+  } = useBooksContext();
   const { id, title, author, image, grade, type, note } = book;
   const isBookAdded = addedBooks.find((b) => b.id === id);
   const isFavoriteBook = favoriteBooks.find((b) => b.id === id);
@@ -37,6 +43,7 @@ const Book = ({ book }) => {
                 book={book}
                 isFavoriteBook={isFavoriteBook}
                 addFavoriteBook={addFavoriteBook}
+                removeFavoriteBook={removeFavoriteBook}
               />
               <Actions
                 book={book}

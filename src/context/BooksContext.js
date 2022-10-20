@@ -19,6 +19,7 @@ import {
   ADD_BOOK_SUCCESS,
   REMOVE_BOOK_SUCCESS,
   ADD_FAVORITE_BOOK_SUCCESS,
+  REMOVE_FAVORITE_BOOK_SUCCESS,
 } from '../utils/actions';
 
 const initialState = {
@@ -71,6 +72,22 @@ const BooksProvider = ({ children }) => {
         favoriteBooks: [...state.favoriteBooks, book],
       });
       dispatch({ type: ADD_FAVORITE_BOOK_SUCCESS, payload: book });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeFavoriteBook = async (bookId) => {
+    try {
+      const { id } = user;
+      const userRef = doc(db, 'users', id);
+      const newFavoriteBooks = state.favoriteBooks.filter(
+        (b) => b.id !== bookId
+      );
+      await updateDoc(userRef, {
+        favoriteBooks: newFavoriteBooks,
+      });
+      dispatch({ type: REMOVE_FAVORITE_BOOK_SUCCESS, payload: bookId });
     } catch (error) {
       console.log(error);
     }
@@ -134,7 +151,13 @@ const BooksProvider = ({ children }) => {
 
   return (
     <BooksContext.Provider
-      value={{ ...state, addBook, removeBook, addFavoriteBook }}>
+      value={{
+        ...state,
+        addBook,
+        removeBook,
+        addFavoriteBook,
+        removeFavoriteBook,
+      }}>
       {children}
     </BooksContext.Provider>
   );

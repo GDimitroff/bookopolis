@@ -6,8 +6,13 @@ import {
   AiOutlineLoading3Quarters,
 } from 'react-icons/ai';
 
-const Favorite = ({ book, isFavoriteBook, addFavoriteBook }) => {
-  const { title, author } = book;
+const Favorite = ({
+  book,
+  isFavoriteBook,
+  addFavoriteBook,
+  removeFavoriteBook,
+}) => {
+  const { id, title, author } = book;
   const [loading, setLoading] = useState(false);
 
   const handleAddFavoriteBook = async () => {
@@ -23,6 +28,18 @@ const Favorite = ({ book, isFavoriteBook, addFavoriteBook }) => {
     );
   };
 
+  const handleRemoveFavoriteBook = async () => {
+    setLoading(true);
+    await removeFavoriteBook(id);
+    setLoading(false);
+
+    toast.info(
+      `"${title}" ${
+        author ? 'от ' + author : ''
+      } беше премахната от списъка с любими!`
+    );
+  };
+
   return (
     <Fragment>
       {loading && <AiOutlineLoading3Quarters className="spinner-small icon" />}
@@ -35,7 +52,10 @@ const Favorite = ({ book, isFavoriteBook, addFavoriteBook }) => {
         </button>
       )}
       {!loading && isFavoriteBook && (
-        <button type="button" className="favorite">
+        <button
+          type="button"
+          className="favorite"
+          onClick={handleRemoveFavoriteBook}>
           <AiFillHeart />
         </button>
       )}
