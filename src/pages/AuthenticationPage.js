@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { useAuthContext } from '../context/AuthContext';
 import { Authentication, Loading } from '../components';
-import image from '../assets/undraw_education.svg';
+import image from '../assets/undraw_bibliophile.svg';
 import { Navigate } from 'react-router-dom';
 
 const AuthenticationPage = () => {

@@ -36,16 +36,6 @@ const Sidebar = () => {
               Книги
             </Link>
           </li>
-          <li className="green">
-            <Link to="quotes" onClick={closeSidebar}>
-              Цитати
-            </Link>
-          </li>
-          <li className="yellow">
-            <Link to="lists" onClick={closeSidebar}>
-              Списъци
-            </Link>
-          </li>
         </ul>
         <hr />
         <button type="button" className="btn-logout" onClick={handleLogout}>
@@ -63,7 +53,7 @@ const SidebarContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--color-brown-1);
+    background: var(--color-brown-2);
     transition: var(--transition);
     transform: translate(-100%);
     z-index: -1;
@@ -89,7 +79,7 @@ const SidebarContainer = styled.div`
     font-size: 3rem;
     background: transparent;
     border-color: transparent;
-    color: var(--color-brown-2);
+    color: var(--color-red-1);
     transition: var(--transition);
     cursor: pointer;
   }
@@ -101,7 +91,6 @@ const SidebarContainer = styled.div`
 
   .logo {
     width: 100%;
-    color: var(--color-brown-2);
   }
 
   .links {
@@ -117,25 +106,25 @@ const SidebarContainer = styled.div`
     font-size: 1.6rem;
     text-transform: uppercase;
     padding: 1.5rem;
-    color: var(--color-brown-2);
-    background-color: var(--color-brown-1);
+    color: var(--color-brown-1);
+    background-color: var(--color-brown-2);
     letter-spacing: var(--spacing);
     transition: var(--transition);
 
     &:hover {
-      color: var(--color-brown-1);
-      background-color: var(--color-brown-2);
+      color: var(--color-brown-2);
+      background-color: var(--color-red-1);
     }
   }
 
   hr {
     width: 100%;
-    border-color: var(--color-brown-2);
+    border-color: var(--color-brown-1);
     margin: 2rem 0 3rem 0;
   }
 
   .btn-logout {
-    color: var(--color-brown-2);
+    color: var(--color-brown-1);
   }
 
   @media screen and (min-width: 768px) {
