@@ -39,11 +39,10 @@ const BooksProvider = ({ children }) => {
     dispatch({ type: BOOK_LOADING });
 
     try {
-      let { id, addedBooks } = user;
+      const { id } = user;
       const userRef = doc(db, 'users', id);
-      addedBooks = [...addedBooks, book];
       await updateDoc(userRef, {
-        addedBooks,
+        addedBooks: [...state.addedBooks, book],
       });
       dispatch({ type: ADD_BOOK_SUCCESS, payload: book });
     } catch (error) {
@@ -64,7 +63,11 @@ const BooksProvider = ({ children }) => {
       if (existingUser)
         dispatch({
           type: LOAD_USER_BOOKS,
-          payload: existingUser,
+          payload: {
+            ...existingUser,
+            addedBooks: existingUser.addedBooks || [],
+            favoriteBooks: existingUser.favoriteBooks || [],
+          },
         });
       else {
         const userRef = doc(db, 'users', user.id);
