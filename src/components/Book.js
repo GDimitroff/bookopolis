@@ -1,60 +1,16 @@
 import styled from 'styled-components';
-import { useState } from 'react';
-import { toast } from 'react-toastify';
-import { FaPlusSquare, FaMinusSquare } from 'react-icons/fa';
-import {
-  AiOutlineHeart,
-  AiFillHeart,
-  AiOutlineLoading3Quarters,
-} from 'react-icons/ai';
 
 import { useBooksContext } from '../context/BooksContext';
+import Actions from './Actions';
+import Favorite from './Favorite';
 import placeholderCover from '../assets/placeholderCover.svg';
 
 const Book = ({ book }) => {
   const { addBook, removeBook, addFavoriteBook, addedBooks, favoriteBooks } =
     useBooksContext();
-  const [loading, setLoading] = useState(false);
   const { id, title, author, image, grade, type, note } = book;
   const isBookAdded = addedBooks.find((b) => b.id === id);
   const isFavoriteBook = favoriteBooks.find((b) => b.id === id);
-
-  const handleAddBook = async () => {
-    setLoading(true);
-    await addBook(book);
-    setLoading(false);
-
-    toast.success(
-      `"${title}" ${
-        author ? 'от ' + author : ''
-      } беше добавена в списъка с прочетени!`
-    );
-  };
-
-  const handleRemoveBook = async () => {
-    setLoading(true);
-    await removeBook(id);
-    setLoading(false);
-
-    toast.error(
-      `"${title}" ${
-        author ? 'от ' + author : ''
-      } беше премахната от списъка с прочетени!`
-    );
-  };
-
-  const handleAddFavoriteBook = async () => {
-    setLoading(true);
-    await addFavoriteBook(book);
-    setLoading(false);
-
-    toast.info(
-      `"${title}" ${author ? 'от ' + author : ''} беше добавена в любими!`,
-      {
-        icon: <AiFillHeart style={{ fontSize: '2rem' }} />,
-      }
-    );
-  };
 
   return (
     <Wrapper>
@@ -77,38 +33,17 @@ const Book = ({ book }) => {
               })}
             </div>
             <div className="right">
-              {!loading && !isFavoriteBook && (
-                <button
-                  type="button"
-                  className="favorite"
-                  onClick={handleAddFavoriteBook}>
-                  <AiOutlineHeart />
-                </button>
-              )}
-              {!loading && isFavoriteBook && (
-                <button type="button" className="favorite">
-                  <AiFillHeart />
-                </button>
-              )}
-              {loading && (
-                <AiOutlineLoading3Quarters className="spinner-small icon" />
-              )}
-              {!loading && !isBookAdded && (
-                <button
-                  type="button"
-                  className="icon btn-add"
-                  onClick={handleAddBook}>
-                  <FaPlusSquare />
-                </button>
-              )}
-              {!loading && isBookAdded && (
-                <button
-                  type="button"
-                  className="icon btn-delete"
-                  onClick={handleRemoveBook}>
-                  <FaMinusSquare />
-                </button>
-              )}
+              <Favorite
+                book={book}
+                isFavoriteBook={isFavoriteBook}
+                addFavoriteBook={addFavoriteBook}
+              />
+              <Actions
+                book={book}
+                isBookAdded={isBookAdded}
+                addBook={addBook}
+                removeBook={removeBook}
+              />
             </div>
           </div>
         </div>
