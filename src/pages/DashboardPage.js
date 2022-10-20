@@ -9,17 +9,18 @@ const DashboardPage = () => {
 
   return (
     <div>
-      {user.addedBooks.map((b) => {
-        const { id, title, author, grade, image } = b;
-        return (
-          <div key={id}>
-            <h1>{title}</h1>
-            <h1>{author}</h1>
-            <img src={image} alt="" style={{ width: '200px' }} />
-          </div>
-        );
-      })}
-      <h1>{user.favoriteBooks}</h1>
+      <h1>dashboard</h1>
+      {/* //   {user.addedBooks.map((b) => {
+    //     const { id, title, author, grade, image } = b;
+    //     return (
+    //       <div key={id}>
+    //         <h1>{title}</h1>
+    //         <h1>{author}</h1>
+    //         <img src={image} alt="" style={{ width: '200px' }} />
+    //       </div>
+    //     );
+    //   })}
+    //   <h1>{user.favoriteBooks}</h1> */}
     </div>
   );
 };

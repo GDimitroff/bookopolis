@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { FaPlusSquare, FaMinusSquare } from 'react-icons/fa';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import { useAuthContext } from '../context/AuthContext';
+
+import { useBooksContext } from '../context/BooksContext';
 import placeholderCover from '../assets/placeholderCover.svg';
 
 const Book = ({ book }) => {
   const { id, title, author, image, grade, type, note } = book;
-  const { addBook } = useAuthContext();
+  const { addBook } = useBooksContext();
 
   return (
     <Wrapper>

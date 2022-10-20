@@ -1,24 +1,90 @@
 import React, { useContext, useEffect, useReducer } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  setDoc,
+} from 'firebase/firestore';
 import { db } from '../firebase';
 
+import { useAuthContext } from './AuthContext';
+import booksReducer from '../reducers/booksReducer';
 import {
   GET_BOOKS_LOADING,
   GET_BOOKS_SUCCESS,
   GET_BOOKS_ERROR,
+  BOOK_LOADING,
+  ADD_BOOK_SUCCESS,
+  USER_LOADING,
+  LOAD_USER_BOOKS,
 } from '../utils/actions';
-import booksReducer from '../reducers/booksReducer';
 
 const initialState = {
   booksLoading: true,
   booksError: false,
   books: [],
+  userLoading: true,
+  addedBooks: [],
+  favoriteBooks: [],
 };
 
 const BooksContext = React.createContext();
 
 const BooksProvider = ({ children }) => {
+  const { user } = useAuthContext();
   const [state, dispatch] = useReducer(booksReducer, initialState);
+
+  const addBook = async (book) => {
+    dispatch({ type: BOOK_LOADING });
+
+    try {
+      let { id, addedBooks } = user;
+      const userRef = doc(db, 'users', id);
+      addedBooks = [...addedBooks, book];
+      await updateDoc(userRef, {
+        addedBooks,
+      });
+      dispatch({ type: ADD_BOOK_SUCCESS, payload: book });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (!user) return;
+
+    const fetchUser = async () => {
+      dispatch({ type: USER_LOADING });
+
+      const data = await getDocs(collection(db, 'users'));
+      const users = data.docs.map((doc) => ({ ...doc.data() }));
+      const existingUser = users.find((u) => u.id === user.id);
+
+      if (existingUser)
+        dispatch({
+          type: LOAD_USER_BOOKS,
+          payload: existingUser,
+        });
+      else {
+        const userRef = doc(db, 'users', user.id);
+        const newUser = {
+          id: user.id,
+          email: user.email,
+          addedBooks: [],
+          favoriteBooks: [],
+        };
+
+        await setDoc(userRef, newUser);
+        dispatch({
+          type: LOAD_USER_BOOKS,
+          payload: newUser,
+        });
+      }
+    };
+
+    fetchUser();
+  }, [user]);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -38,7 +104,7 @@ const BooksProvider = ({ children }) => {
   }, []);
 
   return (
-    <BooksContext.Provider value={{ ...state }}>
+    <BooksContext.Provider value={{ ...state, addBook }}>
       {children}
     </BooksContext.Provider>
   );

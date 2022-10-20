@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useReducer } from 'react';
-import { collection, getDocs, setDoc, doc } from 'firebase/firestore';
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -8,7 +7,7 @@ import {
   signOut,
   GoogleAuthProvider,
 } from 'firebase/auth';
-import { db, auth } from '../firebase';
+import { auth } from '../firebase';
 import { USER_LOADING, USER_SIGN_IN, USER_SIGN_OUT } from '../utils/actions';
 import autReducer from '../reducers/authReducer';
 
@@ -45,35 +44,10 @@ const AuthProvider = ({ children }) => {
 
       if (user) {
         const { uid: id, email } = user;
-
-        const fetchUser = async () => {
-          const data = await getDocs(collection(db, 'users'));
-          const users = data.docs.map((doc) => ({ ...doc.data() }));
-          const existingUser = users.find((user) => user.id === id);
-
-          if (existingUser)
-            dispatch({
-              type: USER_SIGN_IN,
-              payload: existingUser,
-            });
-          else {
-            const userRef = doc(db, 'users', id);
-            const newUser = {
-              id,
-              email,
-              addedBooks: [],
-              favoriteBooks: [],
-            };
-
-            await setDoc(userRef, newUser);
-            dispatch({
-              type: USER_SIGN_IN,
-              payload: newUser,
-            });
-          }
-        };
-
-        fetchUser();
+        dispatch({
+          type: USER_SIGN_IN,
+          payload: { id, email },
+        });
       } else {
         dispatch({ type: USER_SIGN_OUT });
       }
