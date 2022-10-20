@@ -12,7 +12,7 @@ import { useBooksContext } from '../context/BooksContext';
 import placeholderCover from '../assets/placeholderCover.svg';
 
 const Book = ({ book }) => {
-  const { addBook, addedBooks, favoriteBooks } = useBooksContext();
+  const { addBook, removeBook, addedBooks, favoriteBooks } = useBooksContext();
   const [loading, setLoading] = useState(false);
   const { id, title, author, image, grade, type, note } = book;
   const isBookAdded = addedBooks.find((b) => b.id === id);
@@ -26,6 +26,18 @@ const Book = ({ book }) => {
       `"${title}" ${
         author ? 'от ' + author : ''
       } беше добавена в списъка с прочетени!`
+    );
+  };
+
+  const handleRemoveBook = async () => {
+    setLoading(true);
+    await removeBook(id);
+    setLoading(false);
+
+    toast.info(
+      `"${title}" ${
+        author ? 'от ' + author : ''
+      } беше премахната от списъка с прочетени!`
     );
   };
 
@@ -65,7 +77,10 @@ const Book = ({ book }) => {
                 </button>
               )}
               {!loading && isBookAdded && (
-                <button type="button" className="icon btn-delete">
+                <button
+                  type="button"
+                  className="icon btn-delete"
+                  onClick={handleRemoveBook}>
                   <FaMinusSquare />
                 </button>
               )}

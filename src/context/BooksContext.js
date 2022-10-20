@@ -14,8 +14,9 @@ import {
   GET_BOOKS_LOADING,
   GET_BOOKS_SUCCESS,
   GET_BOOKS_ERROR,
-  ADD_BOOK_SUCCESS,
   USER_LOADING,
+  ADD_BOOK_SUCCESS,
+  REMOVE_BOOK_SUCCESS,
   LOAD_USER_BOOKS,
 } from '../utils/actions';
 
@@ -42,6 +43,20 @@ const BooksProvider = ({ children }) => {
         addedBooks: [...state.addedBooks, book],
       });
       dispatch({ type: ADD_BOOK_SUCCESS, payload: book });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeBook = async (bookId) => {
+    try {
+      const { id } = user;
+      const userRef = doc(db, 'users', id);
+      const newBooks = state.addedBooks.filter((b) => b.id !== bookId);
+      await updateDoc(userRef, {
+        addedBooks: newBooks,
+      });
+      dispatch({ type: REMOVE_BOOK_SUCCESS, payload: bookId });
     } catch (error) {
       console.log(error);
     }
@@ -104,7 +119,7 @@ const BooksProvider = ({ children }) => {
   }, []);
 
   return (
-    <BooksContext.Provider value={{ ...state, addBook }}>
+    <BooksContext.Provider value={{ ...state, addBook, removeBook }}>
       {children}
     </BooksContext.Provider>
   );

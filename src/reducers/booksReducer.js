@@ -6,6 +6,7 @@ import {
   ADD_FAVORITE_BOOK_SUCCESS,
   USER_LOADING,
   LOAD_USER_BOOKS,
+  REMOVE_BOOK_SUCCESS,
 } from '../utils/actions';
 
 const booksReducer = (state, action) => {
@@ -37,6 +38,13 @@ const booksReducer = (state, action) => {
       return {
         ...state,
         addedBooks: [...state.addedBooks, action.payload],
+      };
+    }
+    case REMOVE_BOOK_SUCCESS: {
+      const newBooks = state.addedBooks.filter((b) => b.id !== action.payload);
+      return {
+        ...state,
+        addedBooks: newBooks,
       };
     }
     case ADD_FAVORITE_BOOK_SUCCESS: {
