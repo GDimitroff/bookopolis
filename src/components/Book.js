@@ -12,10 +12,12 @@ import { useBooksContext } from '../context/BooksContext';
 import placeholderCover from '../assets/placeholderCover.svg';
 
 const Book = ({ book }) => {
-  const { addBook, removeBook, addedBooks, favoriteBooks } = useBooksContext();
+  const { addBook, removeBook, addFavoriteBook, addedBooks, favoriteBooks } =
+    useBooksContext();
   const [loading, setLoading] = useState(false);
   const { id, title, author, image, grade, type, note } = book;
   const isBookAdded = addedBooks.find((b) => b.id === id);
+  const isFavoriteBook = favoriteBooks.find((b) => b.id === id);
 
   const handleAddBook = async () => {
     setLoading(true);
@@ -34,10 +36,23 @@ const Book = ({ book }) => {
     await removeBook(id);
     setLoading(false);
 
-    toast.info(
+    toast.error(
       `"${title}" ${
         author ? 'от ' + author : ''
       } беше премахната от списъка с прочетени!`
+    );
+  };
+
+  const handleAddFavoriteBook = async () => {
+    setLoading(true);
+    await addFavoriteBook(book);
+    setLoading(false);
+
+    toast.info(
+      `"${title}" ${author ? 'от ' + author : ''} беше добавена в любими!`,
+      {
+        icon: <AiFillHeart style={{ fontSize: '2rem' }} />,
+      }
     );
   };
 
@@ -62,9 +77,19 @@ const Book = ({ book }) => {
               })}
             </div>
             <div className="right">
-              <button type="button" className="favorite">
-                <AiOutlineHeart />
-              </button>
+              {!loading && !isFavoriteBook && (
+                <button
+                  type="button"
+                  className="favorite"
+                  onClick={handleAddFavoriteBook}>
+                  <AiOutlineHeart />
+                </button>
+              )}
+              {!loading && isFavoriteBook && (
+                <button type="button" className="favorite">
+                  <AiFillHeart />
+                </button>
+              )}
               {loading && (
                 <AiOutlineLoading3Quarters className="spinner-small icon" />
               )}
