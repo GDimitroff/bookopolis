@@ -1,13 +1,26 @@
 import styled from 'styled-components';
 
-import { FaPlusSquare, FaMinusSquare } from 'react-icons/fa';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { useBooksContext } from '../context/BooksContext';
+import Actions from './Actions';
+import Favorite from './Favorite';
 
 const ListView = ({ books }) => {
+  const {
+    addBook,
+    removeBook,
+    addFavoriteBook,
+    removeFavoriteBook,
+    addedBooks,
+    favoriteBooks,
+  } = useBooksContext();
+
   return (
     <Wrapper>
       {books.map((book) => {
         const { id, title, author, grade } = book;
+        const isBookAdded = addedBooks.find((b) => b.id === id);
+        const isFavoriteBook = favoriteBooks.find((b) => b.id === id);
+
         return (
           <article key={id}>
             <div className="left">
@@ -25,12 +38,18 @@ const ListView = ({ books }) => {
                 })}
               </div>
               <div className="actions">
-                <button type="button" className="favorite">
-                  <AiOutlineHeart />
-                </button>
-                <button type="button" className="icon">
-                  <FaPlusSquare />
-                </button>
+                <Favorite
+                  book={book}
+                  isFavoriteBook={isFavoriteBook}
+                  addFavoriteBook={addFavoriteBook}
+                  removeFavoriteBook={removeFavoriteBook}
+                />
+                <Actions
+                  book={book}
+                  isBookAdded={isBookAdded}
+                  addBook={addBook}
+                  removeBook={removeBook}
+                />
               </div>
             </div>
           </article>
@@ -96,11 +115,21 @@ const Wrapper = styled.section`
         .favorite {
           display: grid;
           place-items: center;
-          font-size: 2.4rem;
+          font-size: 2.6rem;
+          transition: var(--transition);
+          color: var(--color-brown-2);
+
+          &:hover {
+            transform: scale(1.1);
+          }
         }
 
-        .icon {
-          color: var(--color-brown-1);
+        .btn-add {
+          color: var(--color-green-1);
+        }
+
+        .btn-delete {
+          color: var(--color-red-1);
         }
 
         .favorite {
