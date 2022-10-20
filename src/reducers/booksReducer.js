@@ -2,7 +2,6 @@ import {
   GET_BOOKS_LOADING,
   GET_BOOKS_SUCCESS,
   GET_BOOKS_ERROR,
-  BOOK_LOADING,
   ADD_BOOK_SUCCESS,
   ADD_FAVORITE_BOOK_SUCCESS,
   USER_LOADING,
@@ -27,9 +26,6 @@ const booksReducer = (state, action) => {
     case GET_BOOKS_ERROR: {
       return { ...state, booksLoading: false, booksError: true };
     }
-    case BOOK_LOADING: {
-      return { ...state, bookLoading: true };
-    }
     case USER_LOADING: {
       return { ...state, userLoading: true };
     }
@@ -40,14 +36,12 @@ const booksReducer = (state, action) => {
     case ADD_BOOK_SUCCESS: {
       return {
         ...state,
-        bookLoading: false,
         addedBooks: [...state.addedBooks, action.payload],
       };
     }
     case ADD_FAVORITE_BOOK_SUCCESS: {
       return {
         ...state,
-        bookLoading: false,
         favoriteBooks: [...state.favoriteBooks, action.payload],
       };
     }

@@ -11,7 +11,16 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Providers>
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        closeOnClick={true}
+        pauseOnHover={true}
+        draggable={true}
+        progress={undefined}
+        theme="colored"
+      />
       <App />
     </Providers>
   </React.StrictMode>

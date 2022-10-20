@@ -1,13 +1,33 @@
 import styled from 'styled-components';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { FaPlusSquare, FaMinusSquare } from 'react-icons/fa';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import {
+  AiOutlineHeart,
+  AiFillHeart,
+  AiOutlineLoading3Quarters,
+} from 'react-icons/ai';
 
 import { useBooksContext } from '../context/BooksContext';
 import placeholderCover from '../assets/placeholderCover.svg';
 
 const Book = ({ book }) => {
+  const { addBook, addedBooks, favoriteBooks } = useBooksContext();
+  const [loading, setLoading] = useState(false);
   const { id, title, author, image, grade, type, note } = book;
-  const { addBook } = useBooksContext();
+  const isBookAdded = addedBooks.find((b) => b.id === id);
+
+  const handleAddBook = async () => {
+    setLoading(true);
+    await addBook(book);
+    setLoading(false);
+
+    toast.success(
+      `"${title}" ${
+        author ? 'от ' + author : ''
+      } беше добавена в списъка с прочетени!`
+    );
+  };
 
   return (
     <Wrapper>
@@ -33,12 +53,22 @@ const Book = ({ book }) => {
               <button type="button" className="favorite">
                 <AiOutlineHeart />
               </button>
-              <button
-                type="button"
-                className="icon"
-                onClick={() => addBook(book)}>
-                <FaPlusSquare />
-              </button>
+              {loading && (
+                <AiOutlineLoading3Quarters className="spinner-small icon" />
+              )}
+              {!loading && !isBookAdded && (
+                <button
+                  type="button"
+                  className="icon btn-add"
+                  onClick={handleAddBook}>
+                  <FaPlusSquare />
+                </button>
+              )}
+              {!loading && isBookAdded && (
+                <button type="button" className="icon btn-delete">
+                  <FaMinusSquare />
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -116,10 +146,20 @@ const Wrapper = styled.section`
           display: grid;
           place-items: center;
           font-size: 2.6rem;
+          transition: var(--transition);
+          color: var(--color-brown-2);
+
+          &:hover {
+            transform: scale(1.1);
+          }
         }
 
-        .icon {
-          color: var(--color-brown-1);
+        .btn-add {
+          color: var(--color-green-1);
+        }
+
+        .btn-delete {
+          color: var(--color-red-1);
         }
 
         .favorite {

@@ -14,7 +14,6 @@ import {
   GET_BOOKS_LOADING,
   GET_BOOKS_SUCCESS,
   GET_BOOKS_ERROR,
-  BOOK_LOADING,
   ADD_BOOK_SUCCESS,
   USER_LOADING,
   LOAD_USER_BOOKS,
@@ -36,8 +35,6 @@ const BooksProvider = ({ children }) => {
   const [state, dispatch] = useReducer(booksReducer, initialState);
 
   const addBook = async (book) => {
-    dispatch({ type: BOOK_LOADING });
-
     try {
       const { id } = user;
       const userRef = doc(db, 'users', id);

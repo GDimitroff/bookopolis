@@ -25,6 +25,10 @@
   --color-grey-9: #f1f5f9;
   --color-grey-10: #f8fafc;
 
+  --toastify-color-error: #ff0062;
+  --toastify-color-success: #2dc653;
+  --toastify-font-family: 'Montserrat', sans-serif;
+
   --transition: all 0.3s linear;
   --spacing: 2px;
   --radius: 6px;
