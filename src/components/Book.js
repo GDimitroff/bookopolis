@@ -4,7 +4,6 @@ import { useBooksContext } from '../context/BooksContext';
 import Actions from './Actions';
 import Favorite from './Favorite';
 import placeholderCover from '../assets/placeholderCover.svg';
-import { AiFillRead } from 'react-icons/ai';
 
 const Book = ({ book }) => {
   const {
@@ -15,7 +14,7 @@ const Book = ({ book }) => {
     addedBooks,
     favoriteBooks,
   } = useBooksContext();
-  const { id, title, author, image, grade, type, addedBy, favoriteBy } = book;
+  const { id, title, author, image, grade, type, addedBy } = book;
   const isBookAdded = addedBooks.find((b) => b.id === id);
   const isFavoriteBook = favoriteBooks.find((b) => b.id === id);
 

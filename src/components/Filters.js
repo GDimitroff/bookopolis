@@ -56,6 +56,8 @@ const Filters = () => {
             onChange={updateSort}>
             <option value="name-a">Азбучен ред (А-Я)</option>
             <option value="name-z">Обратен ред (Я-А)</option>
+            <option value="read">Най-четени</option>
+            <option value="favorite">Най-харесвани</option>
           </select>
         </div>
       </form>

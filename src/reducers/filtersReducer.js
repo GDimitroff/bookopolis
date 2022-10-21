@@ -79,6 +79,18 @@ const filtersReducer = (state, action) => {
         );
       }
 
+      if (sort === 'read') {
+        sortedBooks = sortedBooks.sort(
+          (a, b) => b.addedBy.length - a.addedBy.length
+        );
+      }
+
+      if (sort === 'favorite') {
+        sortedBooks = sortedBooks.sort(
+          (a, b) => b.favoriteBy.length - a.favoriteBy.length
+        );
+      }
+
       return { ...state, filteredBooks: sortedBooks };
     }
     default: {
