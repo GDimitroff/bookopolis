@@ -25,6 +25,7 @@ const initialState = {
 const FiltersContext = React.createContext();
 
 const FiltersProvider = ({ children }) => {
+  //TODO: check when user logouts
   const { books } = useBooksContext();
   const [state, dispatch] = useReducer(filtersReducer, initialState);
 
