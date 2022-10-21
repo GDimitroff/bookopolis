@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import Logo from './Logo';
 import { FcGoogle } from 'react-icons/fc';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { GiWhiteBook } from 'react-icons/gi';
 import { formatError } from '../utils/constants';
 
 const Authentication = () => {
@@ -47,12 +48,20 @@ const Authentication = () => {
       await login(emailRef.current.value, passwordRef.current.value);
       setLoading(false);
       navigate('/');
+      toast.success('Здравей отново, сериен читателю!', {
+        icon: <GiWhiteBook style={{ fontSize: '3rem', color: '#2dc653' }} />,
+      });
     } catch (error) {
       if (error.code === 'auth/user-not-found') {
         try {
           await createUser(emailRef.current.value, passwordRef.current.value);
           setLoading(false);
           navigate('/');
+          toast.success('Добре дошъл, сериен читателю!', {
+            icon: (
+              <GiWhiteBook style={{ fontSize: '3rem', color: '#2dc653' }} />
+            ),
+          });
         } catch (error) {
           setLoading(false);
           setError(formatError(error.code));

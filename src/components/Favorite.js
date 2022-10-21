@@ -23,7 +23,7 @@ const Favorite = ({
     toast.info(
       `"${title}" ${author ? 'от ' + author : ''} беше добавена в любими!`,
       {
-        icon: <AiFillHeart style={{ fontSize: '2rem' }} />,
+        icon: <AiFillHeart style={{ fontSize: '2rem', color: '#da00f7' }} />,
       }
     );
   };
@@ -33,7 +33,7 @@ const Favorite = ({
     await removeFavoriteBook(book);
     setLoading(false);
 
-    toast.info(
+    toast.error(
       `"${title}" ${
         author ? 'от ' + author : ''
       } беше премахната от списъка с любими!`
