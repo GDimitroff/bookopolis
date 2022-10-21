@@ -20,7 +20,7 @@ const Sidebar = () => {
       <aside
         className={`${isSidebarOpen ? 'sidebar show-sidebar' : 'sidebar'}`}>
         <div className="sidebar-header">
-          <Logo className="logo" showIcon={false} />
+          <Logo className="logo" />
           <button className="close-btn" type="button" onClick={closeSidebar}>
             <AiOutlineClose />
           </button>
@@ -53,7 +53,7 @@ const SidebarContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--color-brown-2);
+    background: var(--background-color-1);
     transition: var(--transition);
     transform: translate(-100%);
     z-index: -1;
@@ -79,7 +79,7 @@ const SidebarContainer = styled.div`
     font-size: 3rem;
     background: transparent;
     border-color: transparent;
-    color: var(--color-red-1);
+    color: var(--color-brown-1);
     transition: var(--transition);
     cursor: pointer;
   }
@@ -107,19 +107,18 @@ const SidebarContainer = styled.div`
     text-transform: uppercase;
     padding: 1.5rem;
     color: var(--color-brown-1);
-    background-color: var(--color-brown-2);
     letter-spacing: var(--spacing);
     transition: var(--transition);
 
     &:hover {
-      color: var(--color-brown-2);
+      color: var(--background-color-1);
       background-color: var(--color-red-1);
     }
   }
 
   hr {
-    width: 100%;
-    border-color: var(--color-brown-1);
+    width: 90vw;
+    border-color: var(--color-brown-2);
     margin: 2rem 0 3rem 0;
   }
 

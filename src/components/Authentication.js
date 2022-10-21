@@ -85,7 +85,7 @@ const Authentication = () => {
   return (
     <Wrapper>
       <form className="form" onSubmit={handleSubmit}>
-        <Logo className="logo" showIcon={false} />
+        <Logo className="logo" />
         <div className="form-control">
           <label htmlFor="email">Имейл</label>
           <input

@@ -16,7 +16,7 @@ const Navbar = () => {
     <NavContainer>
       <div className="section">
         <div className="nav-header">
-          <Logo></Logo>
+          <Logo />
           <button type="button" className="nav-toggle" onClick={openSidebar}>
             <AiOutlineMenu />
           </button>
