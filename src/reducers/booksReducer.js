@@ -73,7 +73,6 @@ const booksReducer = (state, action) => {
     }
     case ADD_FAVORITE_BOOK_SUCCESS: {
       const { book, id } = action.payload;
-      console.log(book);
       const newBook = { ...book, favoriteBy: [...book.favoriteBy, id] };
 
       const newBooks = state.books.map((b) => {

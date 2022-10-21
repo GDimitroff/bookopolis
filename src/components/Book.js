@@ -4,6 +4,7 @@ import { useBooksContext } from '../context/BooksContext';
 import Actions from './Actions';
 import Favorite from './Favorite';
 import placeholderCover from '../assets/placeholderCover.svg';
+import { FaEye } from 'react-icons/fa';
 
 const Book = ({ book }) => {
   const {
@@ -22,15 +23,15 @@ const Book = ({ book }) => {
   return (
     <Wrapper>
       <article key={id}>
-        <p className="type">
-          {type} | Прочетена: {addedBy.length} | В любими на:{' '}
-          {favoriteBy.length}
+        <p className="read">
+          {addedBy.length}
+          <FaEye />
         </p>
         <img src={image ? image : placeholderCover} alt={title} />
         <div>
           <h3>"{title}"</h3>
-          {note && <p className="note">{note}</p>}
           <h5>{author}</h5>
+          <p>{type}</p>
           <hr />
           <div className="actions">
             <div className="left">
@@ -64,17 +65,20 @@ const Book = ({ book }) => {
 };
 
 const Wrapper = styled.section`
-  .type {
+  .read {
     position: absolute;
     top: 15px;
     right: 15px;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 
   article {
     position: relative;
 
-    padding: 3rem 2rem;
+    padding: 4rem 2rem 3rem 2rem;
     box-shadow: var(--light-shadow);
     border-radius: var(--radius);
 
@@ -91,14 +95,13 @@ const Wrapper = styled.section`
       font-size: 1.8rem;
     }
 
-    .note {
-      font-size: 1.2rem;
-      margin-bottom: 0.4rem;
+    h5 {
+      margin-bottom: 0.2rem;
+      letter-spacing: 0;
     }
 
-    h5 {
-      margin-bottom: 0.6rem;
-      letter-spacing: 0;
+    p {
+      font-size: 1.2rem;
     }
 
     .actions {
