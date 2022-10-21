@@ -33,7 +33,10 @@ const Book = ({ book }) => {
           <hr />
           <div className="actions">
             <div className="left">
-              <p className="read">Прочетено: {addedBy.length}</p>
+              <p className="read">
+                {addedBy.length}{' '}
+                {addedBy.length === 1 ? 'прочитане' : 'прочитания'}
+              </p>
             </div>
             <div className="right">
               <Favorite
@@ -58,8 +61,9 @@ const Book = ({ book }) => {
 
 const Wrapper = styled.section`
   article {
+    height: 100%;
     position: relative;
-    padding: 3.6rem 2rem 2rem 2rem;
+    padding: 3rem 2rem;
     box-shadow: var(--light-shadow);
     border-radius: var(--radius);
 
@@ -86,7 +90,7 @@ const Wrapper = styled.section`
 
       .grade {
         font-size: 1.2rem;
-        padding: 0.2rem;
+        padding: 0.4rem;
       }
     }
 
@@ -138,10 +142,6 @@ const Wrapper = styled.section`
           font-size: 2.6rem;
           transition: var(--transition);
           color: var(--color-brown-2);
-
-          &:hover {
-            transform: scale(1.1);
-          }
         }
 
         .btn-add {
