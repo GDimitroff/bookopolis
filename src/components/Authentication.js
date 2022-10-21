@@ -48,7 +48,7 @@ const Authentication = () => {
       await login(emailRef.current.value, passwordRef.current.value);
       setLoading(false);
       navigate('/');
-      toast.success('Здравей отново, сериен читателю!', {
+      toast.success('Здравей отново, скъпи читателю!', {
         icon: <GiWhiteBook style={{ fontSize: '3rem', color: '#2dc653' }} />,
       });
     } catch (error) {
@@ -57,7 +57,7 @@ const Authentication = () => {
           await createUser(emailRef.current.value, passwordRef.current.value);
           setLoading(false);
           navigate('/');
-          toast.success('Добре дошъл, сериен читателю!', {
+          toast.success('Добре дошъл, скъпи читателю!', {
             icon: (
               <GiWhiteBook style={{ fontSize: '3rem', color: '#2dc653' }} />
             ),

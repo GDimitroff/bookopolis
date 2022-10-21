@@ -4,7 +4,7 @@ import { useBooksContext } from '../context/BooksContext';
 import Actions from './Actions';
 import Favorite from './Favorite';
 import placeholderCover from '../assets/placeholderCover.svg';
-import { FaEye } from 'react-icons/fa';
+import { AiFillRead } from 'react-icons/ai';
 
 const Book = ({ book }) => {
   const {
@@ -15,33 +15,25 @@ const Book = ({ book }) => {
     addedBooks,
     favoriteBooks,
   } = useBooksContext();
-  const { id, title, author, image, grade, type, note, addedBy, favoriteBy } =
-    book;
+  const { id, title, author, image, grade, type, addedBy, favoriteBy } = book;
   const isBookAdded = addedBooks.find((b) => b.id === id);
   const isFavoriteBook = favoriteBooks.find((b) => b.id === id);
 
   return (
     <Wrapper>
       <article key={id}>
-        <p className="read">
-          {addedBy.length}
-          <FaEye />
-        </p>
+        <div className="ribbon">
+          <p className="grade">{grade.join(', ')}</p>
+        </div>
         <img src={image ? image : placeholderCover} alt={title} />
         <div>
           <h3>"{title}"</h3>
           <h5>{author}</h5>
-          <p>{type}</p>
+          <p className="type">{type}</p>
           <hr />
           <div className="actions">
             <div className="left">
-              {grade.map((g) => {
-                return (
-                  <div className="grade" key={g}>
-                    {g}
-                  </div>
-                );
-              })}
+              <p className="read">Прочетено: {addedBy.length}</p>
             </div>
             <div className="right">
               <Favorite
@@ -65,22 +57,38 @@ const Book = ({ book }) => {
 };
 
 const Wrapper = styled.section`
-  .read {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 1.4rem;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
   article {
     position: relative;
-
-    padding: 4rem 2rem 3rem 2rem;
+    padding: 3.6rem 2rem 2rem 2rem;
     box-shadow: var(--light-shadow);
     border-radius: var(--radius);
+
+    .ribbon {
+      --f: 10px; /* control the folded part*/
+      --r: 15px; /* control the ribbon shape */
+      --t: 15px; /* the top offset */
+
+      position: absolute;
+      inset: var(--t) calc(-1 * var(--f)) auto auto;
+      padding: 0 10px var(--f) calc(10px + var(--r));
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - var(--f)),
+        calc(100% - var(--f)) 100%,
+        calc(100% - var(--f)) calc(100% - var(--f)),
+        0 calc(100% - var(--f)),
+        var(--r) calc(50% - var(--f) / 2)
+      );
+      color: var(--color-brown-1);
+      background: var(--color-brown-2);
+      box-shadow: 0 calc(-1 * var(--f)) 0 inset #0005;
+
+      .grade {
+        font-size: 1.2rem;
+        padding: 0.2rem;
+      }
+    }
 
     img {
       display: none;
@@ -100,7 +108,7 @@ const Wrapper = styled.section`
       letter-spacing: 0;
     }
 
-    p {
+    .type {
       font-size: 1.2rem;
     }
 
@@ -111,18 +119,11 @@ const Wrapper = styled.section`
 
       .left {
         display: flex;
+        align-items: center;
         gap: 4px;
 
-        .grade {
+        .read {
           font-size: 1.4rem;
-          width: 26px;
-          height: 26px;
-          display: grid;
-          place-items: center;
-          font-weight: 700;
-          color: var(--color-brown-1);
-          background-color: var(--color-brown-2);
-          border-radius: var(--radius);
         }
       }
 
