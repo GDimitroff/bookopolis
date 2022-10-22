@@ -4,8 +4,13 @@ import { useBooksContext } from '../context/BooksContext';
 import { FavoriteBooks, ReadBooks } from '../components';
 
 const DashboardPage = () => {
-  const { userLoading, booksLoading, addedBooks, favoriteBooks } =
-    useBooksContext();
+  const {
+    userLoading,
+    booksLoading,
+    addedBooks,
+    favoriteBooks,
+    removeFavoriteBook,
+  } = useBooksContext();
 
   if (booksLoading || userLoading) {
     return (
@@ -17,7 +22,10 @@ const DashboardPage = () => {
 
   return (
     <Wrapper className="section">
-      <FavoriteBooks favoriteBooks={favoriteBooks} />
+      <FavoriteBooks
+        favoriteBooks={favoriteBooks}
+        removeBook={removeFavoriteBook}
+      />
       <ReadBooks readBooks={addedBooks} />
     </Wrapper>
   );

@@ -1,24 +1,28 @@
 import styled from 'styled-components';
 import { AiFillHeart } from 'react-icons/ai';
 
-import placeholderCover from '../assets/placeholderCover.svg';
-
-const FavoriteBooks = ({ favoriteBooks }) => {
+const FavoriteBooks = ({ favoriteBooks, removeBook }) => {
   return (
     <Wrapper className="favorite-books">
       <h2>
-        <AiFillHeart /> Любими
+        <AiFillHeart /> Любими ({favoriteBooks.length})
       </h2>
       <hr />
       <div className="books">
         {favoriteBooks.map((book) => {
-          const { title, image } = book;
+          const { title, author } = book;
           return (
-            <div key={book.id} className="book">
-              <img src={image ? image : placeholderCover} alt={title} />
-              <h5>{title}</h5>
-              <button type="button">Премахни от любими</button>
-            </div>
+            <section key={book.id} className="book">
+              <div className="book-header">
+                <h4 className="title">{title}</h4>
+                <p>{author}</p>
+              </div>
+              <footer className="book-footer">
+                <button type="button" onClick={() => removeBook(book)}>
+                  Премахни
+                </button>
+              </footer>
+            </section>
           );
         })}
       </div>
@@ -43,32 +47,41 @@ const Wrapper = styled.article`
 
   .books {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 2rem;
-  }
 
-  .book {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--color-brown-2);
-    padding: 2rem;
-    border-radius: var(--radius);
+    .book {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--light-shadow);
 
-    img {
-      height: 140px;
-      width: 100px;
-      display: block;
-    }
+      .book-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-    h5 {
-      margin-top: 1rem;
-      text-align: center;
-    }
+        .title {
+          margin-top: 1rem;
+          text-align: center;
+          letter-spacing: 1px;
+          line-height: 1.1;
+        }
 
-    button {
-      align-self: flex-end;
+        p {
+          font-size: 1.4rem;
+          margin-top: 0.4rem;
+        }
+      }
+
+      button {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        color: var(--color-red-1);
+      }
     }
   }
 `;
