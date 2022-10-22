@@ -126,7 +126,7 @@ const SidebarContainer = styled.div`
     color: var(--color-brown-1);
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 600px) {
     .sidebar {
       display: none;
     }

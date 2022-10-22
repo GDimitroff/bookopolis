@@ -79,7 +79,7 @@ const NavContainer = styled.nav`
     display: none;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 600px) {
     .section {
       display: grid;
       grid-template-columns: 1fr auto;
