@@ -23,12 +23,6 @@ const Actions = ({ book, isBookAdded, addBook, removeBook }) => {
     setLoading(true);
     await removeBook(book);
     setLoading(false);
-
-    toast.error(
-      `"${title}" ${
-        author ? 'от ' + author : ''
-      } беше премахната от списъка с прочетени!`
-    );
   };
 
   return (

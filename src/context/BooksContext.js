@@ -70,6 +70,12 @@ const BooksProvider = ({ children }) => {
         addedBy: book.addedBy.filter((e) => e !== id),
       });
 
+      toast.error(
+        `"${book.title}" ${
+          book.author ? 'от ' + book.author : ''
+        } беше премахната от списъка с прочетени!`
+      );
+
       dispatch({ type: REMOVE_BOOK_SUCCESS, payload: { book, id } });
     } catch (error) {
       console.log(error);

@@ -23,23 +23,19 @@ const DashboardPage = () => {
 
   return (
     <Wrapper className="section">
+      <ReadBooks readBooks={addedBooks} removeBook={removeBook} />
       <FavoriteBooks
         favoriteBooks={favoriteBooks}
         removeFavoriteBook={removeFavoriteBook}
       />
-      <ReadBooks readBooks={addedBooks} removeBook={removeBook} />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section`
-  min-height: calc(100vh - var(--navbar-height) - 8rem);
-  margin: 4rem auto;
-
-  .added-books,
-  .favorite-books {
-    margin-top: 2rem;
-  }
+  display: grid;
+  margin: 3rem auto;
+  gap: 3rem;
 `;
 
 export default DashboardPage;
