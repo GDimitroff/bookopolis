@@ -8,6 +8,7 @@ const DashboardPage = () => {
     userLoading,
     booksLoading,
     addedBooks,
+    removeBook,
     favoriteBooks,
     removeFavoriteBook,
   } = useBooksContext();
@@ -24,9 +25,9 @@ const DashboardPage = () => {
     <Wrapper className="section">
       <FavoriteBooks
         favoriteBooks={favoriteBooks}
-        removeBook={removeFavoriteBook}
+        removeFavoriteBook={removeFavoriteBook}
       />
-      <ReadBooks readBooks={addedBooks} />
+      <ReadBooks readBooks={addedBooks} removeBook={removeBook} />
     </Wrapper>
   );
 };

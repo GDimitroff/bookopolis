@@ -32,12 +32,6 @@ const Favorite = ({
     setLoading(true);
     await removeFavoriteBook(book);
     setLoading(false);
-
-    toast.error(
-      `"${title}" ${
-        author ? 'от ' + author : ''
-      } беше премахната от списъка с любими!`
-    );
   };
 
   return (

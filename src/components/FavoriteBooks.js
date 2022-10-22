@@ -1,13 +1,22 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { AiFillHeart } from 'react-icons/ai';
 
-const FavoriteBooks = ({ favoriteBooks, removeBook }) => {
-  return (
-    <Wrapper className="favorite-books">
-      <h2>
-        <AiFillHeart /> Любими ({favoriteBooks.length})
-      </h2>
-      <hr />
+const FavoriteBooks = ({ favoriteBooks, removeFavoriteBook }) => {
+  let content;
+  if (favoriteBooks.length === 0) {
+    content = (
+      <div className="empty-favorite">
+        <h5>Все още нямаш добавени любими произведения. ;(</h5>
+        <Link to="books">
+          <button type="button" className="btn">
+            ДОБАВИ
+          </button>
+        </Link>
+      </div>
+    );
+  } else {
+    content = (
       <div className="books">
         {favoriteBooks.map((book) => {
           const { title, author } = book;
@@ -18,7 +27,7 @@ const FavoriteBooks = ({ favoriteBooks, removeBook }) => {
                 <p>{author}</p>
               </div>
               <footer className="book-footer">
-                <button type="button" onClick={() => removeBook(book)}>
+                <button type="button" onClick={() => removeFavoriteBook(book)}>
                   Премахни
                 </button>
               </footer>
@@ -26,6 +35,16 @@ const FavoriteBooks = ({ favoriteBooks, removeBook }) => {
           );
         })}
       </div>
+    );
+  }
+
+  return (
+    <Wrapper className="favorite-books">
+      <h2>
+        <AiFillHeart /> Любими ({favoriteBooks.length})
+      </h2>
+      <hr />
+      {content}
     </Wrapper>
   );
 };
@@ -42,7 +61,27 @@ const Wrapper = styled.article`
   }
 
   hr {
-    margin: 1rem 0 2rem 0;
+    margin: 1rem 0 3rem 0;
+  }
+
+  .empty-favorite {
+    min-height: 120px;
+    padding: 2rem;
+    background-color: var(--background-color-1);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: var(--light-shadow);
+
+    .btn {
+      font-size: 1.4rem;
+      padding: 0.6rem 1.6rem;
+      margin-top: 1rem;
+      background-color: var(--color-brown-2);
+    }
   }
 
   .books {

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useReducer } from 'react';
+import { toast } from 'react-toastify';
 import {
   collection,
   getDocs,
@@ -108,6 +109,11 @@ const BooksProvider = ({ children }) => {
       });
 
       dispatch({ type: REMOVE_FAVORITE_BOOK_SUCCESS, payload: { book, id } });
+      toast.error(
+        `"${book.title}" ${
+          book.author ? 'от ' + book.author : ''
+        } беше премахната от списъка с любими!`
+      );
     } catch (error) {
       console.log(error);
     }
