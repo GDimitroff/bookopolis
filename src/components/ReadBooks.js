@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { BsFillCheckSquareFill } from 'react-icons/bs';
+import { AiFillCloseSquare } from 'react-icons/ai';
 
 const ReadBooks = ({ readBooks, removeBook }) => {
   const sortedBooks = readBooks.sort((a, b) => a.grade[0] - b.grade[0]);
 
   return (
-    <Wrapper className="favorite-books">
+    <Wrapper>
       <h2>
         <BsFillCheckSquareFill /> Прочетени ({sortedBooks.length})
       </h2>
@@ -22,7 +23,12 @@ const ReadBooks = ({ readBooks, removeBook }) => {
                 </div>
                 <div className="right">
                   <button type="button" onClick={() => removeBook(book)}>
-                    Премахни
+                    <AiFillCloseSquare
+                      style={{
+                        fontSize: '2.6rem',
+                        color: 'var(--color-brown-1)',
+                      }}
+                    />
                   </button>
                 </div>
               </section>
@@ -37,14 +43,15 @@ const ReadBooks = ({ readBooks, removeBook }) => {
 };
 
 const Wrapper = styled.article`
-  padding: 2rem;
+  padding: 1.6rem;
   border-radius: var(--radius);
   box-shadow: var(--light-shadow);
 
   h2 {
+    font-size: 2rem;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 10px;
 
     svg {
       font-size: 2rem;
@@ -64,20 +71,20 @@ const Wrapper = styled.article`
 
   .books {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1rem;
 
     .book {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr auto;
       align-items: center;
-      padding: 1rem 2rem;
+      gap: 0.6rem;
+      padding: 1rem 1.6rem;
       border-radius: var(--radius);
       background-color: var(--color-brown-2);
 
       h4 {
         font-size: 1.4rem;
-        line-height: 1.1;
+        line-height: 1;
       }
 
       p {
@@ -87,7 +94,15 @@ const Wrapper = styled.article`
       button {
         font-size: 1.2rem;
         color: var(--color-red-1);
+        display: grid;
+        place-items: center;
       }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .books {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     }
   }
 `;
