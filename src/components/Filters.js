@@ -34,9 +34,6 @@ const Filters = () => {
             className="grade-input"
             onChange={updateFilters}>
             <option value="all">Всички</option>
-            <option value="2">2 клас</option>
-            <option value="3">3 клас</option>
-            <option value="4">4 клас</option>
             <option value="5">5 клас</option>
             <option value="6">6 клас</option>
             <option value="7">7 клас</option>
