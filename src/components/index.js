@@ -6,6 +6,8 @@ import Loading from './Loading';
 import Filters from './Filters';
 import BookList from './BookList';
 import Book from './Book';
+import ReadBooks from './ReadBooks';
+import FavoriteBooks from './FavoriteBooks';
 
 export {
   Navbar,
@@ -16,4 +18,6 @@ export {
   Filters,
   BookList,
   Book,
+  FavoriteBooks,
+  ReadBooks,
 };

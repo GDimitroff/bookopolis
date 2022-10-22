@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { useBooksContext } from '../context/BooksContext';
+import { FavoriteBooks, ReadBooks } from '../components';
 
 const DashboardPage = () => {
   const { userLoading, booksLoading, addedBooks, favoriteBooks } =
@@ -16,27 +17,8 @@ const DashboardPage = () => {
 
   return (
     <Wrapper className="section">
-      <h2>Читателски дневник</h2>
-      <div className="added-books">
-        <h3>Прочетени</h3>
-        {addedBooks.map((book) => {
-          return (
-            <article key={book.id}>
-              <h4>{book.title}</h4>
-            </article>
-          );
-        })}
-      </div>
-      <div className="favorite-books">
-        <h3>Любими</h3>
-        {favoriteBooks.map((book) => {
-          return (
-            <article key={book.id}>
-              <h4>{book.title}</h4>
-            </article>
-          );
-        })}
-      </div>
+      <FavoriteBooks favoriteBooks={favoriteBooks} />
+      <ReadBooks readBooks={addedBooks} />
     </Wrapper>
   );
 };
