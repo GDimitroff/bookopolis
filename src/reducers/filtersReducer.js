@@ -6,6 +6,7 @@ import {
   SORT_BOOKS,
   UPDATE_FILTERS,
   FILTER_BOOKS,
+  RESET_FILTERS,
 } from '../utils/actions';
 
 const filtersReducer = (state, action) => {
@@ -92,6 +93,13 @@ const filtersReducer = (state, action) => {
       }
 
       return { ...state, filteredBooks: sortedBooks };
+    }
+    case RESET_FILTERS: {
+      return {
+        ...state,
+        sort: 'name-a',
+        filters: { ...state.filters, grade: 'all' },
+      };
     }
     default: {
       throw new Error(`No matching action type: "${action.type}"`);

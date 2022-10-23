@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useReducer } from 'react';
 
+import { useAuthContext } from './AuthContext';
 import { useBooksContext } from './BooksContext';
-import filtersReducer from '../reducers/filtersReducer';
 import {
   LOAD_BOOKS,
   SET_GRIDVIEW,
@@ -10,7 +10,9 @@ import {
   FILTER_BOOKS,
   UPDATE_SORT,
   SORT_BOOKS,
+  RESET_FILTERS,
 } from '../utils/actions';
+import filtersReducer from '../reducers/filtersReducer';
 
 const initialState = {
   allBooks: [],
@@ -25,9 +27,15 @@ const initialState = {
 const FiltersContext = React.createContext();
 
 const FiltersProvider = ({ children }) => {
-  //TODO: check when user logouts
+  const { user } = useAuthContext();
   const { books } = useBooksContext();
   const [state, dispatch] = useReducer(filtersReducer, initialState);
+
+  useEffect(() => {
+    if (!user) {
+      dispatch({ type: RESET_FILTERS });
+    }
+  }, [user]);
 
   useEffect(() => {
     dispatch({ type: LOAD_BOOKS, payload: books });

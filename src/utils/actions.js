@@ -10,6 +10,7 @@ export const UPDATE_SORT = 'UPDATE_SORT';
 export const SORT_BOOKS = 'SORT_BOOKS';
 export const UPDATE_FILTERS = 'UPDATE_FILTERS';
 export const FILTER_BOOKS = 'FILTER_BOOKS';
+export const RESET_FILTERS = 'RESET_FILTERS';
 export const USER_LOADING = 'USER_LOADING';
 export const USER_SIGN_IN = 'USER_SIGN_IN';
 export const USER_SIGN_OUT = 'USER_SIGN_OUT';
