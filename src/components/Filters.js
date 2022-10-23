@@ -111,13 +111,6 @@ const Wrapper = styled.section`
     }
   }
 
-  .grade,
-  .sort {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
   .sort-input,
   .grade-input {
     font-family: inherit;

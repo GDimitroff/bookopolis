@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AiFillHeart, AiFillCloseSquare } from 'react-icons/ai';
+import { AiFillCloseSquare, AiFillHeart } from 'react-icons/ai';
 
 const ReadBooks = ({ favoriteBooks, removeFavoriteBook }) => {
   return (
@@ -25,7 +25,7 @@ const ReadBooks = ({ favoriteBooks, removeFavoriteBook }) => {
                     <AiFillCloseSquare
                       style={{
                         fontSize: '2.6rem',
-                        color: 'var(--color-brown-2)',
+                        color: 'var(--color-brown-1)',
                       }}
                     />
                   </button>
@@ -78,22 +78,20 @@ const Wrapper = styled.article`
       gap: 0.6rem;
       padding: 1rem 1.6rem;
       border-radius: var(--radius);
-      background-color: var(--color-red-1);
+      background-color: #e2e8f0;
 
       h4 {
-        color: var(--color-brown-2);
+        color: var(--color-brown-1);
         font-size: 1.4rem;
         line-height: 1;
       }
 
       p {
-        color: var(--color-brown-2);
+        color: var(--color-brown-1);
         font-size: 1.2rem;
       }
 
       button {
-        font-size: 1.2rem;
-        color: var(--color-brown-2);
         display: grid;
         place-items: center;
       }
