@@ -6,11 +6,13 @@ const Stats = ({ books, addedBooks }) => {
 
   return (
     <Wrapper>
-      <h3>
+      <div className="header">
         <SiProgress />
-        Прочетени <span className="red">{addedBooks.length}</span> от общо{' '}
-        <span className="red">{books.length}</span> произведения
-      </h3>
+        <h3>
+          Прочетени <span className="red">{addedBooks.length}</span> от общо{' '}
+          <span className="red">{books.length}</span> произведения
+        </h3>
+      </div>
       <div class="meter">
         <span style={{ width: barWidth }}>
           <span className="progress"></span>
@@ -22,8 +24,9 @@ const Stats = ({ books, addedBooks }) => {
 };
 
 const Wrapper = styled.article`
-  h3 {
-    display: flex;
+  .header {
+    display: grid;
+    grid-template-columns: auto 1fr;
     align-items: center;
     gap: 10px;
     margin-bottom: 1rem;
@@ -31,6 +34,10 @@ const Wrapper = styled.article`
     svg {
       font-size: 1.8rem;
     }
+  }
+
+  h3 {
+    line-height: 1;
 
     .red {
       color: var(--color-red-1);
