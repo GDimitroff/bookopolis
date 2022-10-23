@@ -5,8 +5,15 @@ import { FiGrid } from 'react-icons/fi';
 import { FaList } from 'react-icons/fa';
 
 const Filters = () => {
-  const { gridView, setGridView, setListView, updateFilters, updateSort } =
-    useFiltersContext();
+  const {
+    gridView,
+    setGridView,
+    setListView,
+    updateFilters,
+    updateSort,
+    filters,
+    sort,
+  } = useFiltersContext();
 
   return (
     <Wrapper>
@@ -32,6 +39,7 @@ const Filters = () => {
             name="grade"
             id="grade"
             className="grade-input"
+            value={filters.grade}
             onChange={updateFilters}>
             <option value="all">Всички</option>
             <option value="5">5 клас</option>
@@ -50,6 +58,7 @@ const Filters = () => {
             name="sort"
             id="sort"
             className="sort-input"
+            value={sort}
             onChange={updateSort}>
             <option value="name-a">Азбучен ред (А-Я)</option>
             <option value="name-z">Обратен ред (Я-А)</option>
