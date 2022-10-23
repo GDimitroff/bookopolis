@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 import { useBooksContext } from '../context/BooksContext';
-import { FavoriteBooks, ReadBooks } from '../components';
+import { FavoriteBooks, ReadBooks, Stats } from '../components';
 
 const DashboardPage = () => {
   const {
     userLoading,
     booksLoading,
+    books,
     addedBooks,
     removeBook,
     favoriteBooks,
@@ -23,6 +24,7 @@ const DashboardPage = () => {
 
   return (
     <Wrapper className="section">
+      <Stats books={books} addedBooks={addedBooks} />
       <ReadBooks readBooks={addedBooks} removeBook={removeBook} />
       <FavoriteBooks
         favoriteBooks={favoriteBooks}
