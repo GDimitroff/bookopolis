@@ -37,7 +37,7 @@
   --radius: 6px;
   --light-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  --navbar-height: 8rem;
+  --navbar-height: 10rem;
   --footer-height: 8rem;
   --max-width: 1170px;
 }

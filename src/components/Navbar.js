@@ -26,16 +26,19 @@ const Navbar = () => {
             <NavLink to="/" className="link" end>
               <ImBook />
             </NavLink>
+            <p>Дневник</p>
           </li>
           <li>
             <NavLink to="books" className="link">
               <FaList />
             </NavLink>
+            <p>Книги</p>
           </li>
           <li>
             <NavLink to="auth" className="link" onClick={logout}>
               <FaUserMinus />
             </NavLink>
+            <p>Изход</p>
           </li>
         </ul>
       </div>
@@ -96,7 +99,18 @@ const NavContainer = styled.nav`
 
     .nav-links {
       display: flex;
-      gap: 12px;
+      gap: 18px;
+
+      li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+
+        p {
+          font-size: 1.2rem;
+        }
+      }
 
       .link {
         font-size: 1.6rem;
