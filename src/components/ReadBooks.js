@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { SiProgress } from 'react-icons/si';
-import { AiFillCloseSquare } from 'react-icons/ai';
+
+import BookTile from './BookTile';
 
 const ReadBooks = ({ books, readBooks, removeBook }) => {
-  const barWidth = Math.round((readBooks.length / books.length) * 100) + '%';
   const sortedBooks = readBooks.sort((a, b) => a.grade[0] - b.grade[0]);
+  const barWidth = Math.round((readBooks.length / books.length) * 100) + '%';
 
   return (
     <Wrapper>
@@ -24,24 +25,8 @@ const ReadBooks = ({ books, readBooks, removeBook }) => {
       {sortedBooks.length > 0 ? (
         <div className="books">
           {sortedBooks.map((book) => {
-            const { title, author } = book;
             return (
-              <section key={book.id} className="book">
-                <div className="left">
-                  <h4>{title}</h4>
-                  {author ? <p>{author}</p> : <p>Авторът не е добавен</p>}
-                </div>
-                <div className="right">
-                  <button type="button" onClick={() => removeBook(book)}>
-                    <AiFillCloseSquare
-                      style={{
-                        fontSize: '2.6rem',
-                        color: 'var(--color-brown-1)',
-                      }}
-                    />
-                  </button>
-                </div>
-              </section>
+              <BookTile key={book.id} book={book} removeBook={removeBook} />
             );
           })}
         </div>
@@ -84,32 +69,6 @@ const Wrapper = styled.article`
   .books {
     display: grid;
     gap: 1rem;
-
-    .book {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 1rem 1.6rem;
-      border-radius: var(--radius);
-      background-color: var(--color-brown-2);
-
-      h4 {
-        font-size: 1.4rem;
-        line-height: 1;
-      }
-
-      p {
-        font-size: 1.2rem;
-      }
-
-      button {
-        font-size: 1.2rem;
-        color: var(--color-red-1);
-        display: grid;
-        place-items: center;
-      }
-    }
   }
 
   .meter {
@@ -138,18 +97,18 @@ const Wrapper = styled.article`
     color: white;
   }
 
+  @media screen and (min-width: 768px) {
+    .books {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+  }
+
   @keyframes progress {
     0% {
       width: 0;
     }
     100% {
       width: 100%;
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    .books {
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     }
   }
 `;
