@@ -1,16 +1,26 @@
 import styled from 'styled-components';
-import { BsFillCheckSquareFill } from 'react-icons/bs';
+import { SiProgress } from 'react-icons/si';
 import { AiFillCloseSquare } from 'react-icons/ai';
 
-const ReadBooks = ({ readBooks, removeBook }) => {
+const ReadBooks = ({ books, readBooks, removeBook }) => {
+  const barWidth = Math.round((readBooks.length / books.length) * 100) + '%';
   const sortedBooks = readBooks.sort((a, b) => a.grade[0] - b.grade[0]);
 
   return (
     <Wrapper>
-      <h2>
-        <BsFillCheckSquareFill /> Прочетени ({sortedBooks.length})
-      </h2>
-      <hr />
+      <div className="header">
+        <SiProgress />
+        <h2>
+          Прочетени <span className="red">{readBooks.length}</span> от общо{' '}
+          <span className="red">{books.length}</span> произведения
+        </h2>
+      </div>
+      <div className="meter">
+        <span style={{ width: barWidth }}>
+          <span className="progress"></span>
+          <span className="text">{barWidth}</span>
+        </span>
+      </div>
       {sortedBooks.length > 0 ? (
         <div className="books">
           {sortedBooks.map((book) => {
@@ -43,24 +53,26 @@ const ReadBooks = ({ readBooks, removeBook }) => {
 };
 
 const Wrapper = styled.article`
-  padding: 1.6rem;
-  border-radius: var(--radius);
-  box-shadow: var(--light-shadow);
-
-  h2 {
-    font-size: 2rem;
-    display: flex;
+  .header {
+    display: grid;
+    grid-template-columns: auto 1fr;
     align-items: center;
     gap: 10px;
+    margin-bottom: 2rem;
 
     svg {
       font-size: 2rem;
-      color: var(--color-green-1);
+      color: var(--color-red-1);
     }
-  }
 
-  hr {
-    margin: 1rem 0 2rem 0;
+    h2 {
+      font-size: 2rem;
+      line-height: 1;
+
+      .red {
+        color: var(--color-red-1);
+      }
+    }
   }
 
   p {
@@ -97,6 +109,41 @@ const Wrapper = styled.article`
         display: grid;
         place-items: center;
       }
+    }
+  }
+
+  .meter {
+    position: relative;
+    height: 3rem;
+    margin-bottom: 2rem;
+    background: var(--color-grey-8);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .meter span {
+    display: block;
+    height: 100%;
+  }
+
+  .progress {
+    background-color: var(--color-red-1);
+    animation: progress 1s linear;
+  }
+
+  .text {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    color: white;
+  }
+
+  @keyframes progress {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
     }
   }
 

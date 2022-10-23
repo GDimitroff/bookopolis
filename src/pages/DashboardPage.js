@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { useBooksContext } from '../context/BooksContext';
-import { FavoriteBooks, ReadBooks, Stats } from '../components';
+import { FavoriteBooks, ReadBooks } from '../components';
 
 const DashboardPage = () => {
   const {
@@ -24,8 +24,8 @@ const DashboardPage = () => {
 
   return (
     <Wrapper className="section">
-      <Stats books={books} addedBooks={addedBooks} />
-      <ReadBooks readBooks={addedBooks} removeBook={removeBook} />
+      <ReadBooks books={books} readBooks={addedBooks} removeBook={removeBook} />
+      <hr />
       <FavoriteBooks
         favoriteBooks={favoriteBooks}
         removeFavoriteBook={removeFavoriteBook}
@@ -36,8 +36,11 @@ const DashboardPage = () => {
 
 const Wrapper = styled.section`
   display: grid;
-  margin: 3rem auto;
-  gap: 3rem;
+  margin: 4rem auto;
+
+  hr {
+    margin: 3rem 0;
+  }
 `;
 
 export default DashboardPage;

@@ -8,7 +8,6 @@ import BookList from './BookList';
 import Book from './Book';
 import ReadBooks from './ReadBooks';
 import FavoriteBooks from './FavoriteBooks';
-import Stats from './Stats';
 
 export {
   Navbar,
@@ -21,5 +20,4 @@ export {
   Book,
   FavoriteBooks,
   ReadBooks,
-  Stats,
 };

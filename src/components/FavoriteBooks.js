@@ -4,10 +4,10 @@ import { AiFillCloseSquare, AiFillHeart } from 'react-icons/ai';
 const ReadBooks = ({ favoriteBooks, removeFavoriteBook }) => {
   return (
     <Wrapper>
-      <h2>
-        <AiFillHeart /> Любими ({favoriteBooks.length})
-      </h2>
-      <hr />
+      <div className="header">
+        <AiFillHeart />
+        <h2>Любими ({favoriteBooks.length})</h2>
+      </div>
       {favoriteBooks.length > 0 ? (
         <div className="books">
           {favoriteBooks.map((book) => {
@@ -42,23 +42,22 @@ const ReadBooks = ({ favoriteBooks, removeFavoriteBook }) => {
 };
 
 const Wrapper = styled.article`
-  padding: 1.6rem;
-  border-radius: var(--radius);
-  box-shadow: var(--light-shadow);
-
-  h2 {
-    font-size: 2rem;
-    display: flex;
+  .header {
+    display: grid;
+    grid-template-columns: auto 1fr;
     align-items: center;
     gap: 10px;
+    margin-bottom: 2rem;
 
     svg {
+      font-size: 2.4rem;
       color: var(--color-red-1);
     }
-  }
 
-  hr {
-    margin: 1rem 0 2rem 0;
+    h2 {
+      font-size: 2rem;
+      line-height: 1;
+    }
   }
 
   p {
