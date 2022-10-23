@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { AiFillCloseSquare, AiFillHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
+import BookTile from './BookTile';
 
 const ReadBooks = ({ favoriteBooks, removeFavoriteBook }) => {
   return (
@@ -11,26 +12,12 @@ const ReadBooks = ({ favoriteBooks, removeFavoriteBook }) => {
       {favoriteBooks.length > 0 ? (
         <div className="books">
           {favoriteBooks.map((book) => {
-            const { title, author } = book;
             return (
-              <section key={book.id} className="book">
-                <div className="left">
-                  <h4>{title}</h4>
-                  {author ? <p>{author}</p> : <p>Авторът не е добавен</p>}
-                </div>
-                <div className="right">
-                  <button
-                    type="button"
-                    onClick={() => removeFavoriteBook(book)}>
-                    <AiFillCloseSquare
-                      style={{
-                        fontSize: '2.6rem',
-                        color: 'var(--color-brown-1)',
-                      }}
-                    />
-                  </button>
-                </div>
-              </section>
+              <BookTile
+                key={book.id}
+                book={book}
+                removeBook={removeFavoriteBook}
+              />
             );
           })}
         </div>
@@ -69,32 +56,6 @@ const Wrapper = styled.article`
   .books {
     display: grid;
     gap: 1rem;
-
-    .book {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 1rem 1.6rem;
-      border-radius: var(--radius);
-      background-color: #e2e8f0;
-
-      h4 {
-        color: var(--color-brown-1);
-        font-size: 1.4rem;
-        line-height: 1;
-      }
-
-      p {
-        color: var(--color-brown-1);
-        font-size: 1.2rem;
-      }
-
-      button {
-        display: grid;
-        place-items: center;
-      }
-    }
   }
 
   @media screen and (min-width: 768px) {

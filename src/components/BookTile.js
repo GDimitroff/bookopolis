@@ -43,7 +43,7 @@ const Wrapper = styled.section`
   gap: 0.6rem;
   padding: 1rem 1.6rem;
   border-radius: var(--radius);
-  background-color: var(--color-brown-2);
+  background-color: var(--color-grey-8);
 
   h4 {
     font-size: 1.4rem;
@@ -57,9 +57,15 @@ const Wrapper = styled.section`
   button {
     display: grid;
     place-items: center;
+    color: var(--color-brown-1);
+    overflow: hidden;
+
+    &:hover {
+      color: var(--color-red-1);
+      transition: all 0.2s ease-in-out;
+    }
 
     .icon {
-      color: var(--color-brown-1);
       font-size: 2.4rem;
     }
   }
