@@ -34,7 +34,6 @@ const Filters = () => {
       <hr />
       <form>
         <div className="grades">
-          <label htmlFor="grade">Клас: </label>
           <select
             name="grade"
             id="grade"
