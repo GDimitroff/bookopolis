@@ -48,11 +48,15 @@ const Navbar = () => {
 
 const NavContainer = styled.nav`
   height: var(--navbar-height);
+  position: sticky;
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--background-color-1);
   box-shadow: var(--light-shadow);
+  z-index: 2;
 
   .section {
     display: grid;

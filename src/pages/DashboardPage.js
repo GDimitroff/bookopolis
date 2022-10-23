@@ -41,14 +41,14 @@ const DashboardPage = () => {
 const Wrapper = styled.section`
   display: grid;
   margin: 4rem auto;
-  height: 80vh;
 
   hr {
     margin: 3rem 0;
   }
 
   .image {
-    margin: 0 auto;
+    width: 600px;
+    margin: 4rem auto 0 auto;
 
     img {
       width: 100%;
