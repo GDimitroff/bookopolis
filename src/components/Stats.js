@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { SiProgress } from 'react-icons/si';
 
 const Stats = ({ books, addedBooks }) => {
   const barWidth = Math.round((addedBooks.length / books.length) * 100) + '%';
@@ -6,7 +7,9 @@ const Stats = ({ books, addedBooks }) => {
   return (
     <Wrapper>
       <h3>
-        Прочетени {addedBooks.length} от общо {books.length} произведения
+        <SiProgress />
+        Прочетени <span className="red">{addedBooks.length}</span> от общо{' '}
+        <span className="red">{books.length}</span> произведения
       </h3>
       <div class="meter">
         <span style={{ width: barWidth }}>
@@ -20,7 +23,18 @@ const Stats = ({ books, addedBooks }) => {
 
 const Wrapper = styled.article`
   h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 1rem;
+
+    svg {
+      font-size: 1.8rem;
+    }
+
+    .red {
+      color: var(--color-red-1);
+    }
   }
 
   .meter {
