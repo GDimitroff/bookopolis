@@ -93,6 +93,7 @@ const Authentication = () => {
             placeholder="ime@email.com"
             name="email"
             id="email"
+            autoComplete="email"
             ref={emailRef}
           />
         </div>
@@ -105,6 +106,7 @@ const Authentication = () => {
             placeholder="*********"
             minLength="6"
             maxLength="25"
+            autoComplete="current-password"
             ref={passwordRef}
           />
           <button

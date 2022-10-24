@@ -11,7 +11,7 @@ import {
 
 const App = () => {
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence wait>
       <Routes>
         <Route path="auth" element={<Authentication />} />
         <Route
