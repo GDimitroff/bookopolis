@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import { Routes, Route } from 'react-router-dom';
 import {
   Authentication,
@@ -10,19 +11,21 @@ import {
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="auth" element={<Authentication />} />
-      <Route
-        element={
-          <ProtectedRoute>
-            <Layout />
-          </ProtectedRoute>
-        }>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="books" element={<Books />} />
-        <Route path="*" element={<Error />} />
-      </Route>
-    </Routes>
+    <AnimatePresence exitBeforeEnter>
+      <Routes>
+        <Route path="auth" element={<Authentication />} />
+        <Route
+          element={
+            <ProtectedRoute>
+              <Layout />
+            </ProtectedRoute>
+          }>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="books" element={<Books />} />
+          <Route path="*" element={<Error />} />
+        </Route>
+      </Routes>
+    </AnimatePresence>
   );
 };
 

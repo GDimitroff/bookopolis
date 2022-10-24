@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import { useBooksContext } from '../context/BooksContext';
 import Actions from './Actions';
@@ -19,7 +20,7 @@ const Book = ({ book }) => {
   const isFavoriteBook = favoriteBooks.find((b) => b.id === id);
 
   return (
-    <Wrapper>
+    <Wrapper layout>
       <article key={id}>
         <div className="ribbon">
           <p className="grade">{grade.join(', ')}</p>
@@ -58,7 +59,7 @@ const Book = ({ book }) => {
   );
 };
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
   article {
     height: 100%;
     position: relative;

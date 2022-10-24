@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { Navigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 import { useAuthContext } from '../context/AuthContext';
 import { Authentication, Loading } from '../components';
 import image from '../assets/undraw_bibliophile.svg';
-import { Navigate } from 'react-router-dom';
 
 const AuthenticationPage = () => {
   const { loading, user } = useAuthContext();
@@ -21,14 +22,19 @@ const AuthenticationPage = () => {
   }
 
   return (
-    <Wrapper className="section">
+    <Wrapper
+      className="section"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}>
       <img src={image} alt="Girl and books" />
       <Authentication />
     </Wrapper>
   );
 };
 
-const Wrapper = styled.main`
+const Wrapper = styled(motion.main)`
   min-height: 100vh;
   display: flex;
   align-items: center;

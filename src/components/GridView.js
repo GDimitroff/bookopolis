@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import Book from './Book';
 
 const GridView = ({ books }) => {
   return (
-    <Wrapper>
+    <Wrapper layout>
       {books.map((book) => {
         return <Book key={book.id} book={book} />;
       })}
@@ -12,7 +13,7 @@ const GridView = ({ books }) => {
   );
 };
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
   display: grid;
   gap: 3rem;
 
