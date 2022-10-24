@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# Bookpolis
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Book tracking app built with React.
 
-## Available Scripts
+[Live demo](https://bookopolis-5a833.web.app/)
 
-In the project directory, you can run:
+You can use `test@example.com` and password `123456` to look around or just create your own account.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In order to setup and work on this project on your own, you will need to:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone this project:  
+   `git clone https://github.com/GDimitroff/bookopolis.git`
 
-### `npm test`
+2. Once you have cloned this project, you can install the required dependencies by using:  
+   `npm install`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. A live demo of the project can be started by using:  
+   `npm start`
 
-### `npm run build`
+4. Distribution files can be produced using:  
+   `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Landing login/register page.
+- **Dynamically loaded** book and profile(home) page.
+- **Ability to toggle** between GridView and List View.
+- **Filtering** books by grade.
+- **Sorting** books by name(asc, desc), popularity and the most read.
+- **Ability to add/remove** books to your own profile.
+- **Ability to like/unlike** books.
+- **Tracking** your overall progress.
+- **Fully responsive**.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Outcome
 
-### `npm run eject`
+- Deepened knowledge of using **useEffect** hook.
+- Deepened knowledge of using **useCallback** hook.
+- Learned how to work with multiple **contexts** and **reducers**.
+- Used **react-router**.
+- Used **Firebase** services for authentication and backend.
+- **Protected routes**.
+- Used global CSS styles in combination with **styled components**.
+- Used **react-icons**.
+- Used **Framer Motion** for animations and transitions.
+- Used **react-toastify** for notifications.
+- Tried to keep file structure as clean as possible.
+- Deepened knowledge of using third party libraries.
+- Learned a lot about **Mobile-First** design philosophy.
+- Overall, I have improved my React knowledge A LOT! 🧠
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Screenshots
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src="https://i.imgur.com/abI2Ty2.png" width="900">
+<img src="https://i.imgur.com/wE9mcfW.png" width="900">
+<img src="https://i.imgur.com/Gwj6C9h.png" width="900">
