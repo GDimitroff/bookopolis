@@ -1,4 +1,4 @@
-# Bookpolis
+# Bookopolis
 
 Book tracking app built with React.
 
